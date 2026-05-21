@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none, viewport-fit=cover">
+    <title>Vrindavan Run - Gopal Premium Leela</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0c0d14;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 800px;
+            max-height: 450px;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            background-color: #fb8500;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        @media (orientation: portrait) and (max-width: 768px) {
+            #portrait-warning {
+                display: flex !important;
+            }
+        }
+
+        #portrait-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0c0d14;
+            color: #ffffff;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #portrait-warning svg {
+            width: 64px;
+            height: 64px;
+            fill: #ffb703;
+            margin-bottom: 20px;
+            animation: rotateDevice 2s ease-in-out infinite;
+        }
+
+        @keyframes rotateDevice {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(-90deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #ffb703;
+            touch-action: none;
+        }
+
+        .overlay-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(30, 15, 4, 0.95), rgba(71, 32, 4, 0.95));
+            z-index: 10;
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 8px;
+            color: #ffb703;
+            text-shadow: 3px 4px 0px #d46a00, 0 0 20px rgba(255, 183, 3, 0.4);
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 28px;
+            color: #ffe5b4;
+            max-width: 80%;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            padding: 16px 44px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #ffb703, #fb8500);
+            border: 2px solid #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 0px #a64f00, 0 10px 20px rgba(0,0,0,0.4);
+            transition: transform 0.05s, box-shadow 0.05s;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            touch-action: manipulation;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0px #a64f00, 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        #hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .hud-item {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #472004;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 3px solid #fb8500;
+            box-shadow: 0 6px 0px rgba(71, 32, 4, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .score-val {
+            color: #d81159;
+        }
+
+        .coin-val {
+            color: #d46a00;
+        }
+
+        .best-score {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #ffb703;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="portrait-warning">
+        <svg viewBox="0 0 24 24">
+            <path d="M16,1H8C6.34,1,5,2.34,5,4v16c0,1.66,1.34,3,3,3h8c1.66,0,3-1.34,3-3V4C19,2.34,17.66,1,16,1z M17,18H7V6h10V18z"/>
+        </svg>
+        <p>Hare Krishna! Please rotate your device to landscape mode to play.</p>
+    </div>
+
+    <div id="game-container">
+        
+        <div id="hud" class="hidden">
+            <div class="hud-item">Score: <span id="score-display" class="score-val">0</span></div>
+            <div class="hud-item">🟢 Makhan: <span id="coins-display" class="coin-val">0</span></div>
+        </div>
+
+        <canvas id="gameCanvas" width="800" height="450"></canvas>
+
+        <div id="start-screen" class="overlay-screen">
+            <h1>VRINDAVAN RUN</h1>
+            <p>Experience the divine run of Little Gopal! Tap to jump/double-jump, collect Makhan Handis and avoid thorny forest obstacles.</p>
+            <button id="start-btn" class="btn">Play Leela</button>
+            <div class="best-score" id="start-best">Best Score: 0</div>
+        </div>
+
+        <div id="game-over-screen" class="hidden overlay-screen">
+            <h1>HARI BOL!</h1>
+            <p>Little Gopal has paused his joyful pastime to accept butter offerings.</p>
+            <div style="margin-bottom: 25px;">
+                <div style="font-size: 1.5rem; margin-bottom: 5px;">Devotion Score: <strong id="final-score" style="color: #ffb703;">0</strong></div>
+                <div style="font-size: 1.2rem; color: #ffe5b4;">Makhan Offered: <strong id="final-coins">0</strong></div>
+            </div>
+            <button id="restart-btn" class="btn">Start Again</button>
+            <div class="best-score" id="game-over-best">Best Score: 0</div>
+        </div>
+
+    </div>
+
+    <script>
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Procedural Audio Engine
+        function playSound(type) {
+            if (!audioCtx) return;
+            try {
+                const now = audioCtx.currentTime;
+                
+                if (type === 'jump') {
+                    // Temple Bell harmonic sound
+                    const osc1 = audioCtx.createOscillator();
+                    const osc2 = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    
+                    osc1.connect(gain);
+                    osc2.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc1.type = 'sine';
+                    osc1.frequency.setValueAtTime(659.25, now); // E5 note
+                    
+                    osc2.type = 'sine';
+                    osc2.frequency.setValueAtTime(1318.51, now); // Octave high
+                    
+                    gain.gain.setValueAtTime(0.18, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                    
+                    osc1.start(now);
+                    osc2.start(now);
+                    osc1.stop(now + 0.6);
+                    osc2.stop(now + 0.6);
+                } 
+                else if (type === 'coin') {
+                    // Crisp Kartal/Manjira metallic hit
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(2800, now);
+                    
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.18);
+                } 
+                else if (type === 'hit') {
+                    // Soft classical flute downward melody
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.linearRampToValueAtTime(261.63, now + 0.7); // C4
+                    
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+                    
+                    osc.start(now);
+                    osc.stop(now + 0.7);
+                }
+            } catch (err) {
+                console.warn('Audio postponed until user touch', err);
+            }
+        }
+
+        // Fallback draw helper
+        function drawRoundedRect(cContext, x, y, width, height, radius) {
+            cContext.beginPath();
+            cContext.moveTo(x + radius, y);
+            cContext.lineTo(x + width - radius, y);
+            cContext.quadraticCurveTo(x + width, y, x + width, y + radius);
+            cContext.lineTo(x + width, y + height - radius);
+            cContext.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            cContext.lineTo(x + radius, y + height);
+            cContext.quadraticCurveTo(x, y + height, x, y + height - radius);
+            cContext.lineTo(x, y + radius);
+            cContext.quadraticCurveTo(x, y, x + radius, y);
+            cContext.closePath();
+        }
+
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const STATE_START = 'START';
+        const STATE_PLAYING = 'PLAYING';
+        const STATE_GAMEOVER = 'GAMEOVER';
+        let gameState = STATE_START;
+
+        const GROUND_Y = 370;
+        const GRAVITY = 0.58;
+        const INITIAL_SPEED = 5;
+        const SPEED_INCREMENT = 0.0005;
+
+        let score = 0;
+        let coins = 0;
+        let gameSpeed = INITIAL_SPEED;
+        let highscore = localStorage.getItem('vrindavanrun_best') || 0;
+
+        let particles = [];
+        let obstacles = [];
+        let coinsList = [];
+        let globalAnimFrame = 0;
+
+        // Premium Gopal Player Entity
+        let player = {
+            x: 100,
+            y: GROUND_Y - 55,
+            width: 50,
+            height: 55,
+            vy: 0,
+            isGrounded: false,
+            jumpCount: 0,
+            rotation: 0,
+            squashX: 1,
+            squashY: 1,
+            skinColor: '#a9def9', // Soft spiritual blue skin
+            eyeBlinkTimer: 0,
+            blinkDuration: 0,
+            featherSway: 0,
+            
+            reset() {
+                this.x = 100;
+                this.y = GROUND_Y - this.height;
+                this.vy = 0;
+                this.isGrounded = false;
+                this.jumpCount = 0;
+                this.rotation = 0;
+                this.squashX = 1;
+                this.squashY = 1;
+                this.featherSway = 0;
+            },
+
+            jump() {
+                if (this.jumpCount < 2) {
+                    this.vy = -11.8;
+                    this.isGrounded = false;
+                    this.jumpCount++;
+                    this.squashX = 0.8;
+                    this.squashY = 1.3;
+                    playSound('jump');
+                    createDustParticles(this.x + this.width/2, this.y + this.height, '#ffffff', 8);
+                }
+            },
+
+            update() {
+                this.vy += GRAVITY;
+                this.y += this.vy;
+
+                if (this.y >= GROUND_Y - this.height) {
+                    this.y = GROUND_Y - this.height;
+                    this.vy = 0;
+                    if (!this.isGrounded) {
+                        this.isGrounded = true;
+                        this.jumpCount = 0;
+                        this.squashX = 1.3;
+                        this.squashY = 0.7;
+                    }
+                }
+
+                this.squashX += (1 - this.squashX) * 0.15;
+                this.squashY += (1 - this.squashY) * 0.15;
+
+                // Physics based feather sway
+                this.featherSway = Math.sin(globalAnimFrame * 0.15) * 0.1 + (this.vy * 0.03);
+
+                if (!this.isGrounded) {
+                    this.rotation += 0.08;
+                } else {
+                    this.rotation = Math.sin(globalAnimFrame * 0.1) * 0.02; // Subtle idle breathing sway
+                }
+
+                if (this.eyeBlinkTimer <= 0) {
+                    if (Math.random() < 0.015) {
+                        this.eyeBlinkTimer = 100;
+                        this.blinkDuration = 8;
+                    }
+                } else {
+                    this.eyeBlinkTimer--;
+                    if (this.blinkDuration > 0) this.blinkDuration--;
+                }
+            },
+
+            draw() {
+                ctx.save();
+                const centerX = this.x + this.width / 2;
+                const centerY = this.y + this.height / 2;
+                ctx.translate(centerX, centerY);
+                ctx.rotate(this.rotation);
+                ctx.scale(this.squashX, this.squashY);
+
+                // Body Base (Yellow Dhoti)
+                ctx.fillStyle = '#ffb703';
+                drawRoundedRect(ctx, -this.width/2, -this.height/2 + 10, this.width, this.height - 10, 14);
+                ctx.fill();
+                ctx.strokeStyle = '#472004';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Blue Chest/Face center overlay
+                ctx.fillStyle = this.skinColor;
+                drawRoundedRect(ctx, -this.width/2 + 3, -this.height/2 + 3, this.width - 6, this.height - 14, 12);
+                ctx.fill();
+
+                // Dynamic Running/Jumping Legs
+                ctx.save();
+                ctx.strokeStyle = this.skinColor;
+                ctx.lineWidth = 6;
+                ctx.lineCap = 'round';
+                
+                if (this.isGrounded) {
+                    // Running Leg Animation using cycle trigonometry
+                    const cycle = Math.sin(globalAnimFrame * 0.25);
+                    // Left Leg
+                    ctx.beginPath();
+                    ctx.moveTo(-8, this.height/2 - 8);
+                    ctx.lineTo(-12 + cycle * 8, this.height/2);
+                    ctx.stroke();
+                    // Right Leg
+                    ctx.beginPath();
+                    ctx.moveTo(8, this.height/2 - 8);
+                    ctx.lineTo(12 - cycle * 8, this.height/2);
+                    ctx.stroke();
+                } else {
+                    // Tucked legs during flight/jumping
+                    ctx.beginPath();
+                    ctx.moveTo(-8, this.height/2 - 12);
+                    ctx.lineTo(-4, this.height/2 - 4);
+                    ctx.moveTo(8, this.height/2 - 12);
+                    ctx.lineTo(4, this.height/2 - 4);
+                    ctx.stroke();
+                }
+                ctx.restore();
+
+                // Curly Hair locks (Top and Side circles)
+                ctx.fillStyle = '#1e1a17';
+                const hairSize = 8;
+                // Top curls
+                ctx.beginPath();
+                ctx.arc(-16, -this.height/2 + 2, hairSize, 0, Math.PI * 2);
+                ctx.arc(0, -this.height/2, hairSize + 1, 0, Math.PI * 2);
+                ctx.arc(16, -this.height/2 + 2, hairSize, 0, Math.PI * 2);
+                // Side curls
+                ctx.arc(-22, -6, hairSize - 1, 0, Math.PI * 2);
+                ctx.arc(22, -6, hairSize - 1, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Vaishnava Tilak (Glow White U-Shape & Red Leaf Base)
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.moveTo(-3.5, -16);
+                ctx.lineTo(-3.5, -4);
+                ctx.quadraticCurveTo(0, -1, 3.5, -4);
+                ctx.lineTo(3.5, -16);
+                ctx.lineTo(1.5, -16);
+                ctx.lineTo(1.5, -5);
+                ctx.quadraticCurveTo(0, -3, -1.5, -5);
+                ctx.lineTo(-1.5, -16);
+                ctx.closePath();
+                ctx.fill();
+
+                // Red Bindu / Leaf base
+                ctx.fillStyle = '#ef476f';
+                ctx.beginPath();
+                ctx.arc(0, -2, 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Premium Expressive Anime Eyes
+                const eyeOffset = 9;
+                const eyeRadius = 5.5;
+
+                if (this.blinkDuration > 0) {
+                    ctx.strokeStyle = '#1e1a17';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(-eyeOffset - 3.5, 3);
+                    ctx.lineTo(-eyeOffset + 3.5, 3);
+                    ctx.moveTo(eyeOffset - 3.5, 3);
+                    ctx.lineTo(eyeOffset + 3.5, 3);
+                    ctx.stroke();
+                } else {
+                    // White sclera
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(-eyeOffset, 3, eyeRadius, 0, Math.PI * 2);
+                    ctx.arc(eyeOffset, 3, eyeRadius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = '#1e1a17';
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+
+                    // Beautiful Pupils
+                    ctx.fillStyle = '#472004';
+                    ctx.beginPath();
+                    ctx.arc(-eyeOffset + 1, 3, eyeRadius - 2, 0, Math.PI * 2);
+                    ctx.arc(eyeOffset + 1, 3, eyeRadius - 2, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Highlight Reflection
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(-eyeOffset - 0.5, 1.5, 1.8, 0, Math.PI * 2);
+                    ctx.arc(eyeOffset - 0.5, 1.5, 1.8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Cute Nose
+                ctx.strokeStyle = 'rgba(71, 32, 4, 0.4)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, 7);
+                ctx.lineTo(-1.5, 9);
+                ctx.lineTo(1.5, 9);
+                ctx.stroke();
+
+                // Smiling Pink Mouth
+                ctx.strokeStyle = '#d81159';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.arc(0, 11, 4.5, 0, Math.PI, false);
+                ctx.stroke();
+
+                // Pearl Necklace Choker (Spiritual pearls)
+                ctx.fillStyle = '#ffffff';
+                const pearlCount = 5;
+                for (let i = 0; i < pearlCount; i++) {
+                    const angle = Math.PI * 0.2 + (i * (Math.PI * 0.6) / (pearlCount - 1));
+                    const px = Math.cos(angle) * 15;
+                    const py = Math.sin(angle) * 15 + 13;
+                    ctx.beginPath();
+                    ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Arm holding Golden Bansuri (Flute)
+                ctx.save();
+                ctx.translate(14, 10);
+                // Swing bansuri dynamically
+                ctx.rotate(Math.sin(globalAnimFrame * 0.2) * 0.15 + 0.1);
+                // Flute tube
+                ctx.fillStyle = '#fb5607';
+                ctx.fillRect(-15, -2, 35, 4);
+                // Gold bands on flute
+                ctx.fillStyle = '#ffe5b4';
+                ctx.fillRect(-10, -2.5, 3, 5);
+                ctx.fillRect(0, -2.5, 3, 5);
+                ctx.fillRect(10, -2.5, 3, 5);
+                ctx.restore();
+
+                // Dynamic physics-bound Peacock Feather (Morpankh)
+                ctx.save();
+                ctx.translate(0, -this.height/2 + 2);
+                ctx.rotate(this.featherSway);
+                
+                // Stem / Quill
+                ctx.strokeStyle = '#38b000';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(0, 2);
+                ctx.quadraticCurveTo(-6, -14, -8, -24);
+                ctx.stroke();
+                
+                // Outer Green Feather circle
+                ctx.fillStyle = '#007200';
+                ctx.beginPath();
+                ctx.ellipse(-8, -24, 7, 10, Math.PI/6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Cyan layer
+                ctx.fillStyle = '#00bbf9';
+                ctx.beginPath();
+                ctx.ellipse(-8, -24, 4.5, 7, Math.PI/6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Deep Purple core
+                ctx.fillStyle = '#7209b7';
+                ctx.beginPath();
+                ctx.arc(-8, -24, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+
+                ctx.restore();
+            }
+        };
+
+        // Custom obstacles (Detailed Thorny bushes / Moss rocks)
+        function spawnObstacle() {
+            const typeValue = Math.random();
+            let newObstacle;
+
+            if (typeValue < 0.5) {
+                newObstacle = {
+                    x: canvas.width + 50,
+                    y: GROUND_Y - 34,
+                    width: 36,
+                    height: 34,
+                    type: 'bush'
+                };
+            } else {
+                newObstacle = {
+                    x: canvas.width + 50,
+                    y: GROUND_Y - 45,
+                    width: 48,
+                    height: 45,
+                    type: 'rock'
+                };
+            }
+            obstacles.push(newObstacle);
+        }
+
+        // Premium Makhan Pot (Handi) Spawner
+        function spawnCoin() {
+            const heightTiers = [GROUND_Y - 60, GROUND_Y - 105, GROUND_Y - 145];
+            const chosenY = heightTiers[Math.floor(Math.random() * heightTiers.length)];
+            
+            coinsList.push({
+                x: canvas.width + 50,
+                y: chosenY,
+                radius: 14,
+                pulse: Math.random() * Math.PI // Offset phase
+            });
+        }
+
+        // Particle System
+        function createDustParticles(x, y, color, count = 5) {
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 5 - (gameState === STATE_PLAYING ? gameSpeed * 0.35 : 0),
+                    vy: (Math.random() - 0.5) * 4,
+                    radius: Math.random() * 4 + 2.5,
+                    alpha: 1,
+                    decay: Math.random() * 0.03 + 0.02,
+                    color: color
+                });
+            }
+        }
+
+        function updateParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= p.decay;
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        function drawParticles() {
+            for (let p of particles) {
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Premium background (Scenic Vrindavan with Sun Bloom and Kadamba trees)
+        let parallaxBg = {
+            clouds: [],
+            temples: [],
+            trees: [],
+            
+            init() {
+                this.clouds = [
+                    { x: 120, y: 40, scale: 1.3, speed: 0.15 },
+                    { x: 480, y: 110, scale: 0.9, speed: 0.08 },
+                    { x: 720, y: 60, scale: 1.1, speed: 0.12 }
+                ];
+                // Layered detailed Temple structures
+                this.temples = [
+                    { x: 80, width: 70, height: 130, speed: 0.3 },
+                    { x: 350, width: 95, height: 180, speed: 0.3 },
+                    { x: 620, width: 60, height: 110, speed: 0.3 }
+                ];
+                // Kadamba Tree coordinates in Midground
+                this.trees = [
+                    { x: 220, scale: 1.2, speed: 0.5 },
+                    { x: 550, scale: 0.9, speed: 0.5 },
+                    { x: 850, scale: 1.1, speed: 0.5 }
+                ];
+            },
+
+            update() {
+                for (let cloud of this.clouds) {
+                    cloud.x -= cloud.speed;
+                    if (cloud.x + 100 * cloud.scale < 0) {
+                        cloud.x = canvas.width + 50;
+                        cloud.y = Math.random() * 110 + 30;
+                    }
+                }
+                for (let t of this.temples) {
+                    t.x -= t.speed * (gameSpeed / INITIAL_SPEED);
+                    if (t.x + t.width < 0) {
+                        t.x = canvas.width + Math.random() * 80;
+                    }
+                }
+                for (let tree of this.trees) {
+                    tree.x -= tree.speed * (gameSpeed / INITIAL_SPEED);
+                    if (tree.x + 100 * tree.scale < 0) {
+                        tree.x = canvas.width + Math.random() * 100;
+                    }
+                }
+            },
+
+            draw() {
+                // Heavenly Sun Bloom
+                let radialSun = ctx.createRadialGradient(400, 200, 10, 400, 200, 220);
+                radialSun.addColorStop(0, 'rgba(255, 229, 180, 0.45)');
+                radialSun.addColorStop(0.3, 'rgba(255, 183, 3, 0.25)');
+                radialSun.addColorStop(1, 'rgba(255, 183, 3, 0)');
+                
+                ctx.fillStyle = radialSun;
+                ctx.beginPath();
+                ctx.arc(400, 200, 220, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Core Sun
+                ctx.fillStyle = '#fffdfa';
+                ctx.beginPath();
+                ctx.arc(400, 200, 40, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Distant Temple Silhouettes
+                for (let t of this.temples) {
+                    ctx.fillStyle = '#eb5e28'; // Soft terracotta temple shade
+                    ctx.beginPath();
+                    // Multi-tiered Shikhar design
+                    ctx.rect(t.x, GROUND_Y - t.height/2, t.width, t.height/2);
+                    ctx.moveTo(t.x, GROUND_Y - t.height/2);
+                    ctx.quadraticCurveTo(t.x + t.width/2, GROUND_Y - t.height, t.x + t.width, GROUND_Y - t.height/2);
+                    ctx.fill();
+
+                    // Beautiful arches details on temples
+                    ctx.fillStyle = '#d64d18';
+                    ctx.beginPath();
+                    ctx.arc(t.x + t.width/2, GROUND_Y - t.height/3, t.width/4, Math.PI, 0, false);
+                    ctx.fill();
+
+                    // Gold Kalash and flying saffron flags
+                    ctx.strokeStyle = '#ffe5b4';
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(t.x + t.width/2, GROUND_Y - t.height);
+                    ctx.lineTo(t.x + t.width/2, GROUND_Y - t.height - 15);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#ffb703';
+                    ctx.beginPath();
+                    ctx.moveTo(t.x + t.width/2, GROUND_Y - t.height - 15);
+                    // Slight waving effect on flags
+                    const waveX = Math.sin(globalAnimFrame * 0.1) * 2;
+                    ctx.lineTo(t.x + t.width/2 + 14 + waveX, GROUND_Y - t.height - 10);
+                    ctx.lineTo(t.x + t.width/2, GROUND_Y - t.height - 5);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+
+                // Scenic Kadamba trees
+                for (let tree of this.trees) {
+                    ctx.save();
+                    const tx = tree.x;
+                    const ty = GROUND_Y;
+                    const ts = tree.scale;
+
+                    // Trunk
+                    ctx.fillStyle = '#472004';
+                    ctx.beginPath();
+                    ctx.moveTo(tx - 6 * ts, ty);
+                    ctx.lineTo(tx - 2 * ts, ty - 60 * ts);
+                    ctx.lineTo(tx + 2 * ts, ty - 60 * ts);
+                    ctx.lineTo(tx + 6 * ts, ty);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Multi-layered lush green foliage (Kadamba tree leaves)
+                    ctx.fillStyle = '#38b000';
+                    ctx.beginPath();
+                    ctx.arc(tx - 18 * ts, ty - 65 * ts, 20 * ts, 0, Math.PI * 2);
+                    ctx.arc(tx + 18 * ts, ty - 65 * ts, 20 * ts, 0, Math.PI * 2);
+                    ctx.arc(tx, ty - 85 * ts, 25 * ts, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#007200'; // Dark leafy overlays
+                    ctx.beginPath();
+                    ctx.arc(tx - 10 * ts, ty - 70 * ts, 12 * ts, 0, Math.PI * 2);
+                    ctx.arc(tx + 10 * ts, ty - 70 * ts, 12 * ts, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.restore();
+                }
+
+                // Soft background clouds
+                ctx.fillStyle = '#ffffff';
+                for (let cloud of this.clouds) {
+                    ctx.save();
+                    ctx.globalAlpha = 0.4;
+                    ctx.beginPath();
+                    const cx = cloud.x;
+                    const cy = cloud.y;
+                    const s = cloud.scale;
+                    ctx.arc(cx, cy, 20 * s, 0, Math.PI * 2);
+                    ctx.arc(cx + 16 * s, cy - 10 * s, 26 * s, 0, Math.PI * 2);
+                    ctx.arc(cx + 36 * s, cy, 20 * s, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+        };
+
+        // Beautiful sand/mud pathway of Braj Vrindavan
+        let groundScrollX = 0;
+        function drawGround() {
+            ctx.fillStyle = '#ffdd99'; // Divine soft yellow Braj soil
+            ctx.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
+
+            ctx.fillStyle = '#b08968'; // Darker base earth
+            ctx.fillRect(0, GROUND_Y + 12, canvas.width, canvas.height - (GROUND_Y + 12));
+
+            // Detailed grass line
+            ctx.strokeStyle = '#38b000';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(0, GROUND_Y + 2);
+            ctx.lineTo(canvas.width, GROUND_Y + 2);
+            ctx.stroke();
+
+            // Scrolling grass/sand detailing
+            ctx.strokeStyle = '#2d6a4f';
+            ctx.lineWidth = 4;
+            groundScrollX -= gameSpeed;
+            if (groundScrollX <= -50) {
+                groundScrollX = 0;
+            }
+            for (let i = groundScrollX; i < canvas.width + 50; i += 50) {
+                ctx.beginPath();
+                ctx.moveTo(i, GROUND_Y);
+                ctx.lineTo(i + 6, GROUND_Y + 8);
+                ctx.lineTo(i + 12, GROUND_Y);
+                ctx.stroke();
+            }
+        }
+
+        let obstacleTimer = 0;
+        let coinTimer = 0;
+
+        function updateGame() {
+            globalAnimFrame++;
+            gameSpeed += SPEED_INCREMENT;
+
+            parallaxBg.update();
+            player.update();
+
+            // Footprint dust puffs on path
+            if (player.isGrounded && Math.random() < 0.22) {
+                createDustParticles(player.x, GROUND_Y, '#ffd166', 2);
+            }
+
+            obstacleTimer--;
+            if (obstacleTimer <= 0) {
+                spawnObstacle();
+                obstacleTimer = Math.floor(Math.random() * 50) + Math.max(50, 115 - gameSpeed * 5.5);
+            }
+
+            coinTimer--;
+            if (coinTimer <= 0) {
+                spawnCoin();
+                coinTimer = Math.floor(Math.random() * 50) + 70;
+            }
+
+            // Obstacles check
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let obs = obstacles[i];
+                obs.x -= gameSpeed;
+
+                // Collisions boundary
+                if (
+                    player.x < obs.x + obs.width &&
+                    player.x + player.width > obs.x &&
+                    player.y < obs.y + obs.height &&
+                    player.y + player.height > obs.y
+                ) {
+                    triggerGameOver();
+                    return;
+                }
+
+                if (obs.x + obs.width < 0) {
+                    obstacles.splice(i, 1);
+                    score += 10;
+                    document.getElementById('score-display').textContent = score;
+                }
+            }
+
+            // Coins handling (Makhan Handis)
+            for (let i = coinsList.length - 1; i >= 0; i--) {
+                let c = coinsList[i];
+                c.x -= gameSpeed;
+                c.pulse += 0.12; // slow smooth float bounce
+
+                const closestX = Math.max(player.x, Math.min(c.x, player.x + player.width));
+                const closestY = Math.max(player.y, Math.min(c.y, player.y + player.height));
+                const distanceX = c.x - closestX;
+                const distanceY = c.y - closestY;
+                const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+                if (distanceSquared < (c.radius * c.radius)) {
+                    playSound('coin');
+                    createDustParticles(c.x, c.y, '#ffffff', 12); // Fresh butter splashes!
+                    coins++;
+                    score += 50;
+                    document.getElementById('coins-display').textContent = coins;
+                    document.getElementById('score-display').textContent = score;
+                    coinsList.splice(i, 1);
+                    continue;
+                }
+
+                if (c.x + c.radius < 0) {
+                    coinsList.splice(i, 1);
+                }
+            }
+
+            updateParticles();
+        }
+
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Sky Twilight Sunrise Gradient
+            let skyGrad = ctx.createLinearGradient(0, 0, 0, GROUND_Y);
+            skyGrad.addColorStop(0, '#7400b8'); // Deep purple dawn top
+            skyGrad.addColorStop(0.5, '#f72585'); // Royal crimson
+            skyGrad.addColorStop(1, '#ffb703'); // Warm sunrise gold horizon
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            parallaxBg.draw();
+            
+            // Draw Premium Makhan Handis
+            for (let c of coinsList) {
+                ctx.save();
+                const bounce = Math.sin(c.pulse) * 5;
+
+                // Glowing Halo behind Handi
+                const haloGrad = ctx.createRadialGradient(c.x, c.y + bounce, 1, c.x, c.y + bounce, c.radius * 2);
+                haloGrad.addColorStop(0, 'rgba(255, 229, 180, 0.6)');
+                haloGrad.addColorStop(1, 'rgba(255, 229, 180, 0)');
+                ctx.fillStyle = haloGrad;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y + bounce, c.radius * 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Clay Handi Body
+                ctx.fillStyle = '#9c6644';
+                ctx.strokeStyle = '#472004';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y + bounce, c.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+
+                // Terracotta rim details
+                ctx.fillStyle = '#7f5539';
+                ctx.fillRect(c.x - c.radius - 2, c.y - 4 + bounce, (c.radius + 2) * 2, 4);
+
+                // Fresh dripping butter details
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(c.x - 5, c.y - 5 + bounce, 5, 0, Math.PI * 2);
+                ctx.arc(c.x + 3, c.y - 5 + bounce, 5, 0, Math.PI * 2);
+                // Drips
+                ctx.arc(c.x - 2, c.y + 2 + bounce, 4, 0, Math.PI * 2);
+                ctx.arc(c.x + 3, c.y + 4 + bounce, 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Hanging rope sling
+                ctx.strokeStyle = '#ffe5b4';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(c.x, c.y - 28 + bounce);
+                ctx.lineTo(c.x - c.radius, c.y - 2 + bounce);
+                ctx.moveTo(c.x, c.y - 28 + bounce);
+                ctx.lineTo(c.x + c.radius, c.y - 2 + bounce);
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+
+            // Draw Premium Obstacles
+            for (let obs of obstacles) {
+                ctx.save();
+                
+                if (obs.type === 'bush') {
+                    // Thick complex forest bush
+                    ctx.fillStyle = '#1b4332';
+                    ctx.beginPath();
+                    ctx.arc(obs.x + 8, obs.y + 18, 14, 0, Math.PI * 2);
+                    ctx.arc(obs.x + 28, obs.y + 18, 14, 0, Math.PI * 2);
+                    ctx.arc(obs.x + 18, obs.y + 10, 15, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Brighter green leaf overlays on top
+                    ctx.fillStyle = '#40916c';
+                    ctx.beginPath();
+                    ctx.arc(obs.x + 12, obs.y + 14, 9, 0, Math.PI * 2);
+                    ctx.arc(obs.x + 24, obs.y + 14, 9, 0, Math.PI * 2);
+                    ctx.arc(obs.x + 18, obs.y + 8, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Danger thorns
+                    ctx.strokeStyle = '#d94e34';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(obs.x + 2, obs.y + 12); ctx.lineTo(obs.x - 4, obs.y + 8);
+                    ctx.moveTo(obs.x + 34, obs.y + 12); ctx.lineTo(obs.x + 40, obs.y + 8);
+                    ctx.stroke();
+                } else {
+                    // Styled Shaded Vrindavan Path boulder
+                    ctx.fillStyle = '#5c677d';
+                    ctx.strokeStyle = '#2f3e46';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    drawRoundedRect(ctx, obs.x, obs.y, obs.width, obs.height, 12);
+                    ctx.fill();
+                    ctx.stroke();
+                    
+                    // Moss overlay
+                    ctx.fillStyle = '#2d6a4f';
+                    ctx.beginPath();
+                    drawRoundedRect(ctx, obs.x + 4, obs.y, obs.width - 8, 8, 4);
+                    ctx.fill();
+
+                    // Rock Cracks
+                    ctx.strokeStyle = '#334155';
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(obs.x + 12, obs.y + 6);
+                    ctx.lineTo(obs.x + 28, obs.y + 26);
+                    ctx.lineTo(obs.x + 36, obs.y + 36);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+
+            player.draw();
+            drawParticles();
+            drawGround();
+        }
+
+        function gameLoop() {
+            if (gameState === STATE_PLAYING) {
+                updateGame();
+                render();
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        function startGame() {
+            initAudio();
+            gameState = STATE_PLAYING;
+
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('game-over-screen').classList.add('hidden');
+            document.getElementById('hud').classList.remove('hidden');
+
+            score = 0;
+            coins = 0;
+            gameSpeed = INITIAL_SPEED;
+            obstacles = [];
+            coinsList = [];
+            particles = [];
+            obstacleTimer = 75;
+            coinTimer = 110;
+
+            document.getElementById('score-display').textContent = '0';
+            document.getElementById('coins-display').textContent = '0';
+
+            player.reset();
+            parallaxBg.init();
+            
+            gameLoop();
+        }
+
+        function triggerGameOver() {
+            gameState = STATE_GAMEOVER;
+            playSound('hit');
+
+            canvas.style.transform = 'translate(6px, 6px)';
+            setTimeout(() => canvas.style.transform = 'translate(-6px, -6px)', 50);
+            setTimeout(() => canvas.style.transform = 'translate(0px, 0px)', 100);
+
+            if (score > highscore) {
+                highscore = score;
+                localStorage.setItem('vrindavanrun_best', highscore);
+            }
+
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('final-coins').textContent = coins;
+            document.getElementById('game-over-best').textContent = 'Best Score: ' + highscore;
+            document.getElementById('start-best').textContent = 'Best Score: ' + highscore;
+
+            document.getElementById('hud').classList.add('hidden');
+            document.getElementById('game-over-screen').classList.remove('hidden');
+        }
+
+        window.addEventListener('load', () => {
+            document.getElementById('start-best').textContent = 'Best Score: ' + highscore;
+            parallaxBg.init();
+            render();
+        });
+
+        // Safe gameplay input limited purely to play-canvas
+        function handleInput(e) {
+            e.preventDefault();
+            initAudio();
+            if (gameState === STATE_PLAYING) {
+                player.jump();
+            }
+        }
+
+        canvas.addEventListener('touchstart', handleInput, { passive: false });
+        canvas.addEventListener('mousedown', handleInput);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                e.preventDefault();
+                initAudio();
+                if (gameState === STATE_PLAYING) {
+                    player.jump();
+                } else if (gameState === STATE_START) {
+                    startGame();
+                } else if (gameState === STATE_GAMEOVER) {
+                    startGame();
+                }
+            }
+        });
+
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+
+        startBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            startGame();
+        }, { passive: false });
+        
+        startBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            startGame();
+        });
+
+        restartBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            startGame();
+        }, { passive: false });
+
+        restartBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            startGame();
+        });
+
+    </script>
+</body>
+</html>
