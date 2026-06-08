@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Privacy Policy - Bhagavad Gita App</title>
+    
+    <!-- Bootstrap & Premium Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Modern & Spiritual Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Premium Variables matching the Bhagavad Gita color scheme */
+        :root {
+            --primary-orange: #FF8F00;
+            --deep-orange: #E65100;
+            --text-dark: #212121;
+            --text-light: #424242;
+            --bg-color: #FAFAFA;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 🔴 TOP NAVBAR (APPLE GLASS EFFECT) */
+        .top-nav {
+            background: rgba(31, 8, 2, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 18px 20px; display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .back-btn {
+            color: white; font-size: 1.4rem; text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.1);
+            width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+        }
+        .back-btn:active { transform: scale(0.85) translateX(-5px); background: rgba(255, 255, 255, 0.25); }
+        .page-title {
+            font-family: 'Poppins', sans-serif; color: white; font-size: 1.35rem;
+            font-weight: 700; margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* GRAND HEADER */
+        .policy-header {
+            background: linear-gradient(135deg, #1f0802 0%, #3d1b19 100%);
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--primary-orange);
+        }
+        
+        .header-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 153, 51, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-orange);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
+            background-color: white;
+            object-fit: cover;
+        }
+
+        .header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffcc80;
+            margin: 0 0 10px 0;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .header-subtitle {
+            font-size: 0.95rem;
+            color: #ececec;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* POLICY CONTENT CARD */
+        .policy-container {
+            max-width: 900px;
+            margin: -20px auto 40px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            padding: 35px 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: #d32f2f;
+            font-weight: 700;
+            background: rgba(211, 47, 47, 0.1);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(211, 47, 47, 0.2);
+        }
+        
+        .play-store-badge {
+            font-size: 0.85rem;
+            color: #2e7d32;
+            font-weight: 700;
+            background: rgba(46, 125, 50, 0.1);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            margin-left: 10px;
+            border: 1px solid rgba(46, 125, 50, 0.2);
+        }
+
+        .p-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-orange);
+            border-bottom: 2px dashed rgba(255, 143, 0, 0.2);
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .p-section-title i {
+            font-size: 1.1rem;
+            color: var(--primary-orange);
+        }
+
+        .p-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 143, 0, 0.05), transparent);
+            border-left: 4px solid var(--primary-orange);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        
+        .permission-highlight {
+            background: rgba(46, 125, 50, 0.05);
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            border-left: 5px solid #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        /* DEVELOPER SUPPORT SECTION - Professional Look */
+        .developer-module {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 50px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dev-label {
+            font-size: 0.8rem; color: #ffb74d; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; display: block;
+        }
+
+        .dev-name {
+            font-size: 1.5rem; font-weight: 600; color: white; margin: 0 0 10px 0;
+        }
+        
+        .dev-desc {
+            font-size: 0.9rem; color: #9ca3af; margin-bottom: 15px; line-height: 1.5;
+        }
+
+        .contact-info {
+            font-size: 0.95rem; color: white; margin-top: 15px;
+        }
+
+        .contact-info a {
+            color: #ffb74d; text-decoration: none; font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="page-title">Privacy Policy</h1>
+    </div>
+
+    <!-- Header Section -->
+    <header class="policy-header">
+        <div class="header-bg-glow"></div>
+        <img src="prabhupada.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23FFD700\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23000\'>ॐ</text></svg>'" alt="Prabhupada" class="header-logo">
+        <h1 class="header-title">Privacy Policy</h1>
+        <p class="header-subtitle">Official Privacy & Data Legal Terms for Bhagavad Gita App</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="policy-container container">
+        
+        <div>
+            <span class="last-updated"><i class="fas fa-history me-1"></i> Effective Date: June 8, 2026 (Updated for Storage Frameworks)</span>
+            <span class="play-store-badge"><i class="fab fa-google-play me-1"></i> Google Play Data Safety Compliant</span>
+        </div>
+
+        <p class="p-text">Hare Krishna! Welcome to the premium Srimad <b>Bhagavad Gita App</b>. We deeply respect your privacy and are committed to protecting your personal data [2]. This Privacy Policy document outlines our transparent practices regarding data collection, native Android frameworks, and local storage mechanisms, ensuring complete compliance with the Google Play Developer Guidelines [1, 2].</p>
+
+        <!-- Section 1 -->
+        <h2 class="p-section-title"><i class="fas fa-clipboard-user"></i> 1. Information Collection & Usage</h2>
+        <p class="p-text">This mobile application is built on a strict "No Forced Login" models [2]. You can access all features, including daily shlokas, bookmarks, and language translations, without creating an account or submitting any personal details [2].</p>
+        
+        <div class="highlight-box">
+            <b>A. Complete Local Device Storage:</b>
+            <p style="margin: 5px 0 0 0; color:#555;">To provide a seamless, highly customizable spiritual experience, we save all your progress data locally on your device storage (using SharedPreferences and sandboxed database systems of the mobile OS). This data is <b>NEVER</b> transmitted or uploaded to our external servers [2]. This includes:</p>
+            <ul style="margin-top:10px; margin-bottom:0;">
+                <li><i class="fas fa-mobile-alt text-success me-1"></i> Daily streak tracking and historical reading records [5].</li>
+                <li><i class="fas fa-mobile-alt text-success me-1"></i> Earned Karma Points for completing spiritual verses.</li>
+                <li><i class="fas fa-mobile-alt text-success me-1"></i> Saved bookmarks of your favorite verses.</li>
+                <li><i class="fas fa-mobile-alt text-success me-1"></i> UI theme preferences (Night, Day, and Eye Protection modes) and selected active languages (Hindi, Marathi, English).</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box" style="border-left-color: #0288D1; background: rgba(2, 136, 209, 0.05);">
+            <b style="color: #0277BD;"><i class="fas fa-shield-alt me-1"></i> B. Zero Personal Data Transmission:</b>
+            <p style="margin: 5px 0 0 0; color:#555;">Because we do not use registration systems, we do not collect or request sensitive personal details such as names, phone numbers, location, contacts, or credit card details [2]. Your spiritual progress data remains completely under your own physical control [2].</p>
+        </div>
+
+        <!-- Section 2: Device Permissions Transparency -->
+        <h2 class="p-section-title"><i class="fas fa-unlock-alt"></i> 2. Native Device Permissions</h2>
+        <p class="p-text">To function efficiently and provide a premium user experience, the application utilizes standard device permissions. Below is the detailed explanation for complete transparency as required by Google Play Console [1]:</p>
+        
+        <div class="permission-highlight">
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: #2e7d32; margin-bottom: 8px;"><i class="fas fa-folder me-1"></i> Android Scoped Storage & MediaStore API</h4>
+            <p style="font-size: 0.9rem; color: #424242; margin-bottom: 10px;">Our application features a "Shloka Story Mode" which lets you generate highly customized, beautifully illustrated shlok cards to put on your Instagram or WhatsApp status. To facilitate this securely:</p>
+            <ul style="margin-bottom: 0;">
+                <li>We comply fully with Android's modern <b>Scoped Storage guidelines</b> [3].</li>
+                <li>We use the native <b>MediaStore API</b> to write the customized story image directly into your public <code>Downloads</code> directory [3].</li>
+                <li>By adhering to these modern standards, our app <b>does not require any legacy, intrusive read/write storage permissions</b> on modern Android versions, safeguarding your private files [3].</li>
+            </ul>
+        </div>
+
+        <ul>
+            <li><b>Internet Access:</b> Required to fetch dynamic translations, download chapter files, load custom Sanskrit fonts, and stream daily chanting audio files from our secure cloud services [4].</li>
+            <li><b>Access Network State:</b> Required to detect active device connectivity [4]. This check prevents unexpected interface freezes or app crashes when your phone loses network coverage.</li>
+            <li><b>Foreground Service & Sleep Prevention:</b> Used strictly to keep the screen responsive while you are actively contemplating on the divine translations or listening to continuous audios.</li>
+        </ul>
+
+        <!-- Section 3 -->
+        <h2 class="p-section-title"><i class="fas fa-external-link-alt"></i> 3. External Intent Redirections</h2>
+        <p class="p-text">Our app includes deep links to our official social media channels (YouTube, Facebook, Instagram) and auxiliary play store utilities. Clicking these links triggers native system intents that securely launch the official external applications on your device outside our sandbox.</p>
+        <p class="p-text">Please be aware that your interactions and data on these external platforms are strictly governed by the Privacy Policies and Terms of Service of those respective third-party networks.</p>
+
+        <!-- Section 4 -->
+        <h2 class="p-section-title"><i class="fas fa-database"></i> 4. Third-Party Web Technologies & Advertising</h2>
+        <p class="p-text">To support application development and server maintenance costs, we may integrate trusted third-party services and advertising networks. These services may collect basic device identifiers according to their respective policies:</p>
+        <ul>
+            <li><b>Advertising Networks (AdMob, Unity, Start.io):</b> Our application may display ads. These integrated networks use your device's <b>Advertising ID</b> and network headers to serve relevant ads without exposing any personally identifiable information (PII).</li>
+            <li><b>Privacy Sandbox & AdServices APIs:</b> In compliance with modern Android SDKs, we utilize non-intrusive technologies such as the AdServices Topics API, attribution APIs, and Play Install Referrer API. This enables secure, anonymous performance measurement without tracking user identity. You can manage or reset your Advertising ID settings anytime through your device's Google settings.</li>
+        </ul>
+
+        <!-- Section 5 -->
+        <h2 class="p-section-title"><i class="fas fa-users"></i> 5. Children & Family Privacy (COPPA Compliance)</h2>
+        <p class="p-text">The spiritual teachings of Srimad Bhagavad Gita are moral, educational, and completely safe for all audiences, including children. In strict accordance with the Children's Online Privacy Protection Act (COPPA), we declare that we do not knowingly request, collect, or store personal information from children under the age of 13.</p>
+
+        <!-- Section 6 -->
+        <h2 class="p-section-title"><i class="fas fa-trash-alt"></i> 6. Data Retention & Deletion Policy</h2>
+        <p class="p-text">Since our application operates on a zero-account model, we do not maintain persistent user profiles or cloud data to delete [5]. You have full control over your localized progress data, streaks, and bookmarks:</p>
+        <ul>
+            <li>You can clear all app progress, cache, and saved bookmarks at any time by navigating to your device's <b>Settings -> Apps -> Bhagavad Gita App -> Storage</b> and selecting <b>"Clear Data"</b> [5].</li>
+            <li>Uninstalling the application will automatically and permanently delete all sandboxed progress files from your device hardware [5].</li>
+        </ul>
+        <div class="highlight-box" style="border-left-color: #d32f2f; background: rgba(211, 47, 47, 0.05);">
+            <b>How to Request Data Deletion (Play Store Requirement):</b>
+            <p style="margin: 5px 0 0 0; color:var(--text-dark);">For any data deletion inquiries or questions regarding your local privacy, you can directly email our administration team at <b>support@bhagavadgitaapp.com</b> [5]. Verifiable requests will be addressed promptly.</p>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 class="p-section-title"><i class="fas fa-shield-alt"></i> 7. GDPR & CCPA Compliance Disclosures</h2>
+        <p class="p-text">We strictly respect international privacy laws, including the European Union's General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA) [6]. Since zero personal information is transmitted to us, you can enjoy all spiritual features without risk of data sharing, profiling, or unauthorized third-party access [6].</p>
+
+        <!-- PROFESSIONAL TECHNICAL SUPPORT SECTION -->
+        <div class="developer-module">
+            <span class="dev-label"><i class="fas fa-code-branch me-1"></i> Technical Maintenance & Support</span>
+            <h2 class="dev-name">App Engineering Team</h2>
+            <p class="dev-desc">
+                This application is designed, developed, and maintained by our dedicated technical developer and team to ensure a seamless, high-performance, and secure digital experience for devotees worldwide. We continuously monitor our servers, CDN endpoints, and API configurations to provide uninterrupted service.
+            </p>
+            <div class="contact-info">
+                For legal inquiries, app support, or assistance, please contact: <br>
+                <a href="mailto:support@bhagavadgitaapp.com"><i class="fas fa-envelope me-1"></i>support@bhagavadgitaapp.com</a>
+                <br>
+                <span style="font-size: 0.85rem; color: #6b7280; margin-top: 5px; display: inline-block;">(Note: Developer support is available for server and layout maintenance)</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px;">
+        © 2026 Bhagavad Gita App. All Rights Reserved. <br>
+        Designed & Maintained with devotion.
+    </footer>
+
+    <!-- Bootstrap Scripting -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
