@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Our Apps - Bhagavad Gita Developer</title>
+    
+    <!-- Bootstrap & Premium Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Modern & Spiritual Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Premium Saffron Variables */
+        :root {
+            --primary-orange: #FF8F00;
+            --deep-orange: #E65100;
+            --text-dark: #212121;
+            --text-light: #424242;
+            --bg-color: #FAFAFA;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 🔴 TOP NAVBAR (APPLE GLASS EFFECT) */
+        .top-nav {
+            background: rgba(31, 8, 2, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 18px 20px; display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .back-btn {
+            color: white; font-size: 1.4rem; text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.1);
+            width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+        }
+        .back-btn:active { transform: scale(0.85) translateX(-5px); background: rgba(255, 255, 255, 0.25); }
+        .page-title {
+            font-family: 'Poppins', sans-serif; color: white; font-size: 1.35rem;
+            font-weight: 700; margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* GRAND HEADER */
+        .portfolio-header {
+            background: linear-gradient(135deg, #1f0802 0%, #3d1b19 100%);
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--primary-orange);
+        }
+        
+        .header-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 153, 51, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-orange);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
+            background-color: white;
+            object-fit: cover;
+        }
+
+        .header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffcc80;
+            margin: 0 0 10px 0;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .header-subtitle {
+            font-size: 0.95rem;
+            color: #ececec;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* PORTFOLIO GRID CONTAINER */
+        .portfolio-container {
+            max-width: 950px;
+            margin: -20px auto 40px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            padding: 35px 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--deep-orange);
+            border-bottom: 2px dashed rgba(255, 143, 0, 0.2);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* PREMIUM SHOWCASE CARDS */
+        .app-showcase-card {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            padding: 22px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        
+        .app-showcase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(230, 81, 0, 0.08);
+            border-color: rgba(255, 143, 0, 0.3);
+        }
+
+        .app-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .app-showcase-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.05);
+            background: #faf8f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            object-fit: cover;
+        }
+
+        .app-meta-info h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .app-rating-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--deep-orange);
+            background: rgba(255, 143, 0, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .app-downloads {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .app-description {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            text-align: justify;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        /* PLAY STORE CTA BUTTON */
+        .play-store-btn {
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(230, 81, 0, 0.2);
+            transition: all 0.3s;
+        }
+        .play-store-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230, 81, 0, 0.35);
+            color: white;
+        }
+        .play-store-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* DEVELOPER SUPPORT SECTION */
+        .developer-module {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 50px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dev-label {
+            font-size: 0.8rem; color: #ffb74d; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; display: block;
+        }
+
+        .dev-name {
+            font-size: 1.5rem; font-weight: 600; color: white; margin: 0 0 10px 0;
+        }
+        
+        .dev-desc {
+            font-size: 0.9rem; color: #9ca3af; margin-bottom: 15px; line-height: 1.5;
+        }
+
+        .contact-info {
+            font-size: 0.95rem; color: white; margin-top: 15px;
+        }
+
+        .contact-info a {
+            color: #ffb74d; text-decoration: none; font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="page-title">More Apps</h1>
+    </div>
+
+    <!-- Header Section -->
+    <header class="portfolio-header">
+        <div class="header-bg-glow"></div>
+        <img src="prabhupada.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23FFD700\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23000\'>ॐ</text></svg>'" alt="Prabhupada Logo" class="header-logo">
+        <h1 class="header-title">Our Apps</h1>
+        <p class="header-subtitle">Explore Our Spiritual and Vedic Ecosystem on Google Play Store</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="portfolio-container container">
+        
+        <h2 class="portfolio-heading"><i class="fab fa-google-play me-2"></i> Sister Spiritual Applications</h2>
+        
+        <!-- App Grid (2 Columns on Medium Screens & Up) -->
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            
+            <!-- APP 1: JAPA COUNTER -->
+            <div class="col">
+                <div class="app-showcase-card">
+                    <div>
+                        <div class="app-meta-row">
+                            <!-- Clean Premium Saffron Icon Wrapper -->
+                            <div class="app-showcase-icon"><i class="fas fa-hands-praying" style="color:var(--primary-orange);"></i></div>
+                            <div class="app-meta-info">
+                                <h3>ISKCON Japa Mala Counter</h3>
+                                <span class="app-rating-badge">4.9 <i class="fas fa-star text-warning"></i></span>
+                                <span class="app-downloads">50K+ Downloads</span>
+                            </div>
+                        </div>
+                        <p class="app-description">
+                            Simplify your daily chanting, track rounds, and build consistency. Features beautiful japa beads animation, a native counter, daily logs, and spiritual notification reminders to keep you aligned with your daily vow.
+                        </p>
+                    </div>
+                    <!-- Play Store Link Intercepted by Sketchware Java -->
+                    <a href="https://play.google.com/store/apps/details?id=com.japa.counter.prabhupada" class="play-store-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-google-play"></i> Get it on Play Store
+                    </a>
+                </div>
+            </div>
+
+            <!-- APP 2: VEDIC WISDOM WALLPAPERS -->
+            <div class="col">
+                <div class="app-showcase-card">
+                    <div>
+                        <div class="app-meta-row">
+                            <div class="app-showcase-icon"><i class="fas fa-image" style="color:#0288D1;"></i></div>
+                            <div class="app-meta-info">
+                                <h3>Vedic Wallpapers & Quotes</h3>
+                                <span class="app-rating-badge">4.8 <i class="fas fa-star text-warning"></i></span>
+                                <span class="app-downloads">10K+ Downloads</span>
+                            </div>
+                        </div>
+                        <p class="app-description">
+                            Get beautiful, inspiring high-definition spiritual wallpapers and transcendental daily quotes from Srimad Bhagavatam and Bhagavad Gita every morning on your home screen. Set them with 1-click.
+                        </p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.vedic.wisdom.wallpapers" class="play-store-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-google-play"></i> Get it on Play Store
+                    </a>
+                </div>
+            </div>
+
+            <!-- APP 3: SPIRITUAL LIFE COACH -->
+            <div class="col">
+                <div class="app-showcase-card">
+                    <div>
+                        <div class="app-meta-row">
+                            <div class="app-showcase-icon"><i class="fas fa-compass" style="color:#7b1fa2;"></i></div>
+                            <div class="app-meta-info">
+                                <h3>Spiritual Life Coach</h3>
+                                <span class="app-rating-badge">4.7 <i class="fas fa-star text-warning"></i></span>
+                                <span class="app-downloads">5K+ Downloads</span>
+                            </div>
+                        </div>
+                        <p class="app-description">
+                            Discover Vedic solutions to modern-day mental strain, anxiety, and stress. It integrates authorized Vedic counseling principles and offers personalized shloka recommendations based on cognitive situations.
+                        </p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.spiritual.lifecoach.vedic" class="play-store-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-google-play"></i> Get it on Play Store
+                    </a>
+                </div>
+            </div>
+
+            <!-- APP 4: KRISHNA GAME -->
+            <div class="col">
+                <div class="app-showcase-card">
+                    <div>
+                        <div class="app-meta-row">
+                            <div class="app-showcase-icon"><i class="fas fa-gamepad" style="color:#2e7d32;"></i></div>
+                            <div class="app-meta-info">
+                                <h3>Krishna Leela Games</h3>
+                                <span class="app-rating-badge">4.8 <i class="fas fa-star text-warning"></i></span>
+                                <span class="app-downloads">100K+ Downloads</span>
+                            </div>
+                        </div>
+                        <p class="app-description">
+                            Learn pastimes of Lord Sri Krishna with interactive memory matches, card games, puzzles, and spiritual quizzes for the entire family. Safe, educational, and fun for all age groups.
+                        </p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.krishna.leela.games" class="play-store-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-google-play"></i> Get it on Play Store
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PROFESSIONAL TECHNICAL SUPPORT SECTION -->
+        <div class="developer-module">
+            <span class="dev-label"><i class="fas fa-code-branch me-1"></i> Technical Maintenance & Support</span>
+            <h2 class="dev-name">App Engineering Team</h2>
+            <p class="dev-desc">
+                This application is designed, developed, and maintained by our dedicated technical developer and team to ensure a seamless, high-performance, and secure digital experience for devotees worldwide. We continuously monitor our servers, CDN endpoints, and API configurations to provide uninterrupted service.
+            </p>
+            <div class="contact-info">
+                For legal inquiries, app support, or assistance, please contact: <br>
+                <a href="mailto:support@bhagavadgitaapp.com"><i class="fas fa-envelope me-1"></i>support@bhagavadgitaapp.com</a>
+                <br>
+                <span style="font-size: 0.85rem; color: #6b7280; margin-top: 5px; display: inline-block;">(Note: Developer support is available for server and layout maintenance)</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px;">
+        © 2026 Bhagavad Gita App. All Rights Reserved. <br>
+        Designed & Maintained with devotion.
+    </footer>
+
+    <!-- Bootstrap Scripting -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
