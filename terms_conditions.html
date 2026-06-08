@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Terms and Conditions - Bhagavad Gita App</title>
+    
+    <!-- Bootstrap & Premium Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Modern & Spiritual Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Premium Saffron Variables */
+        :root {
+            --primary-orange: #FF8F00;
+            --deep-orange: #E65100;
+            --text-dark: #212121;
+            --text-light: #424242;
+            --bg-color: #FAFAFA;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 🔴 TOP NAVBAR (APPLE GLASS EFFECT) */
+        .top-nav {
+            background: rgba(31, 8, 2, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 18px 20px; display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .back-btn {
+            color: white; font-size: 1.4rem; text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.1);
+            width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+        }
+        .back-btn:active { transform: scale(0.85) translateX(-5px); background: rgba(255, 255, 255, 0.25); }
+        .page-title {
+            font-family: 'Poppins', sans-serif; color: white; font-size: 1.35rem;
+            font-weight: 700; margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* GRAND HEADER */
+        .terms-header {
+            background: linear-gradient(135deg, #1f0802 0%, #3d1b19 100%);
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--primary-orange);
+        }
+        
+        .header-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 153, 51, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-orange);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
+            background-color: white;
+            object-fit: cover;
+        }
+
+        .header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffcc80;
+            margin: 0 0 10px 0;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .header-subtitle {
+            font-size: 0.95rem;
+            color: #ececec;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* TERMS CONTENT CARD */
+        .terms-container {
+            max-width: 900px;
+            margin: -20px auto 40px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            padding: 35px 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: #d32f2f;
+            font-weight: 700;
+            background: rgba(211, 47, 47, 0.1);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(211, 47, 47, 0.2);
+        }
+        
+        .policy-badge {
+            font-size: 0.85rem;
+            color: #2e7d32;
+            font-weight: 700;
+            background: rgba(46, 125, 50, 0.1);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            margin-left: 10px;
+            border: 1px solid rgba(46, 125, 50, 0.2);
+        }
+
+        .t-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-orange);
+            border-bottom: 2px dashed rgba(255, 143, 0, 0.2);
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .t-section-title i {
+            font-size: 1.1rem;
+            color: var(--primary-orange);
+        }
+
+        .t-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 143, 0, 0.05), transparent);
+            border-left: 4px solid var(--primary-orange);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        /* DEVELOPER SUPPORT SECTION - Professional Look */
+        .developer-module {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 50px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dev-label {
+            font-size: 0.8rem; color: #ffb74d; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; display: block;
+        }
+
+        .dev-name {
+            font-size: 1.5rem; font-weight: 600; color: white; margin: 0 0 10px 0;
+        }
+        
+        .dev-desc {
+            font-size: 0.9rem; color: #9ca3af; margin-bottom: 15px; line-height: 1.5;
+        }
+
+        .contact-info {
+            font-size: 0.95rem; color: white; margin-top: 15px;
+        }
+
+        .contact-info a {
+            color: #ffb74d; text-decoration: none; font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="page-title">Terms & Conditions</h1>
+    </div>
+
+    <!-- Header Section -->
+    <header class="terms-header">
+        <div class="header-bg-glow"></div>
+        <img src="prabhupada.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23FFD700\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23000\'>ॐ</text></svg>'" alt="Prabhupada Logo" class="header-logo">
+        <h1 class="header-title">Terms & Conditions</h1>
+        <p class="header-subtitle">Spiritual, Ethical, and Usage Terms for Bhagavad Gita App</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="terms-container container">
+        
+        <div>
+            <span class="last-updated"><i class="fas fa-history me-1"></i> Effective Date: June 08, 2026</span>
+            <span class="policy-badge"><i class="fab fa-google-play me-1"></i> Developer Terms Compliant</span>
+        </div>
+
+        <p class="t-text">Hare Krishna! Welcome to the premium Srimad <b>Bhagavad Gita App</b>. By installing, opening, or accessing any section of this mobile application, you agree to comply with and be bound by the following Terms and Conditions of use. Please read these terms carefully before engaging with our digital platform [2].</p>
+
+        <!-- Section 1 -->
+        <h2 class="t-section-title"><i class="fas fa-gavel"></i> 1. Acceptance of Terms</h2>
+        <p class="t-text">By using this application, you represent that you are legally capable of entering into binding agreements [2]. These terms apply to all visitors, users, and others who access or use the application. If you disagree with any part of these terms, you must immediately uninstall and discontinue using the application [2].</p>
+        
+        <!-- Section 2 -->
+        <h2 class="t-section-title"><i class="fas fa-scale-balanced"></i> 2. Permitted Spiritual Usage License</h2>
+        <p class="t-text">This application is provided solely for personal, non-commercial, educational, and spiritual study purposes [2]. Under this license, you are permitted to:</p>
+        <ul>
+            <li>Read translations and purports of Srimad Bhagavad Gita daily [2].</li>
+            <li>Bookmark your favorite verses and participate in our anonymous Karma Points/Streak system.</li>
+            <li>Generate customized story cards to share spiritual messages on external networks [2].</li>
+        </ul>
+        <p class="t-text"><strong>Strict Restrictions:</strong> You must not modify, decompile, reverse-engineer, resell, or distribute any technical package of this app for commercial gain [2]. You must not use our dynamic content systems to spread inappropriate, offensive, or non-spiritual material.</p>
+
+        <!-- Section 3 -->
+        <h2 class="t-section-title"><i class="fas fa-database"></i> 3. Local Data Storage & User Responsibility</h2>
+        <p class="t-text">This application operates on a <b>sandboxed offline-first architecture</b>, meaning we do not require user account registration [2]. Therefore:</p>
+        <ul>
+            <li>All saved bookmarks, current daily streaks, and accumulated Karma Points are saved **locally** on your device hardware (using native system database and SharedPreferences files) [2, 5].</li>
+            <li><strong>Data Loss Risk:</strong> Since we do not maintain cloud sync systems, we have no means of recovering your saved data if you lose your phone, clear your application cache in system settings, or uninstall the app [2, 5].</li>
+            <li>The developer team cannot be held responsible for any loss of spiritual progress metrics or custom bookmarks [5].</li>
+        </ul>
+
+        <!-- Section 4 -->
+        <h2 class="t-section-title"><i class="fas fa-copyright"></i> 4. Intellectual Property & Commentaries</h2>
+        <p class="t-text">All Srimad Bhagavad Gita translations, Sanskrit shloks, transliterations, and spiritual purports displayed in this app are respected and presented under fair-use educational guidelines. The copyright for specific commentaries remains with their respective spiritual organizations, authors, or trusts.</p>
+        <p class="t-text">You are fully encouraged to share shlokas and translations on social media, provided that proper source credits are maintained, and the divine message is presented without adulteration or misleading modifications [2].</p>
+
+        <!-- Section 5 -->
+        <h2 class="t-section-title"><i class="fas fa-share-nodes"></i> 5. Third-Party Deep Links & Redirections</h2>
+        <p class="t-text">The application provides interactive buttons to share verses (Text or Custom Story Cards) directly to third-party applications like WhatsApp and Instagram. These operations use standard Android systems (Intents) to open installed external official apps [2].</p>
+        <p class="t-text">We are not responsible for the functionality, terms of service, or content safety of WhatsApp, Instagram, YouTube, or Google Play Store. Once you redirect outside our application boundary, those external platforms' own terms and privacy rules govern your interaction [2].</p>
+
+        <!-- Section 6 -->
+        <h2 class="t-section-title"><i class="fas fa-triangle-exclamation"></i> 6. Disclaimer of Warranties</h2>
+        <p class="t-text">This spiritual application is provided on an "AS IS" and "AS AVAILABLE" basis [2]. We make no representations or warranties of any kind, express or implied, regarding the continuous availability of our servers, CDN translation files, or the completeness and accuracy of digital translations under every possible operating system. While we strive to maintain 100% bug-free performance, some Android WebView compatibility issues may occur on heavily customized or older third-party ROMs [2].</p>
+
+        <!-- Section 7 -->
+        <h2 class="t-section-title"><i class="fas fa-hand-holding-heart"></i> 7. Limitation of Liability</h2>
+        <p class="t-text">To the maximum extent permitted by applicable laws, the developer team and contributors shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of, or inability to use, this application, including but not limited to device performance glitches, or local data resets [5].</p>
+
+        <!-- Section 8 -->
+        <h2 class="t-section-title"><i class="fas fa-shield-halved"></i> 8. Governing Law</h2>
+        <p class="t-text">These Terms and Conditions shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
+
+        <!-- Section 9 -->
+        <h2 class="t-section-title"><i class="fas fa-pen-to-square"></i> 9. Modifications to Terms</h2>
+        <p class="t-text">We reserve the right to modify these Terms and Conditions at any time. Updates will be posted on this page with an updated effective date. Continued usage of the application after any such changes constitutes your acceptance of the updated terms.</p>
+
+        <!-- PROFESSIONAL TECHNICAL SUPPORT SECTION -->
+        <div class="developer-module">
+            <span class="dev-label"><i class="fas fa-code-branch me-1"></i> Technical Maintenance & Support</span>
+            <h2 class="dev-name">App Engineering Team</h2>
+            <p class="dev-desc">
+                This application is designed, developed, and maintained by our dedicated technical developer and team to ensure a seamless, high-performance, and secure digital experience for devotees worldwide. We continuously monitor our servers, CDN endpoints, and API configurations to provide uninterrupted service.
+            </p>
+            <div class="contact-info">
+                For legal inquiries, app support, or assistance, please contact: <br>
+                <a href="mailto:support@bhagavadgitaapp.com"><i class="fas fa-envelope me-1"></i>support@bhagavadgitaapp.com</a>
+                <br>
+                <span style="font-size: 0.85rem; color: #6b7280; margin-top: 5px; display: inline-block;">(Note: Developer support is available for server and layout maintenance)</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px;">
+        © 2026 Bhagavad Gita App. All Rights Reserved. <br>
+        Designed & Maintained with devotion.
+    </footer>
+
+    <!-- Bootstrap Scripting -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
