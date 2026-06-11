@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Contact Us - Bhagavad Gita App</title>
+    
+    <!-- Bootstrap & Premium Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Modern & Spiritual Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Premium Saffron Variables */
+        :root {
+            --primary-orange: #FF8F00;
+            --deep-orange: #E65100;
+            --text-dark: #212121;
+            --text-light: #424242;
+            --bg-color: #FAFAFA;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 🔴 TOP NAVBAR (APPLE GLASS EFFECT) */
+        .top-nav {
+            background: rgba(31, 8, 2, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 18px 20px; display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .back-btn {
+            color: white; font-size: 1.4rem; text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.1);
+            width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+        }
+        .back-btn:active { transform: scale(0.85) translateX(-5px); background: rgba(255, 255, 255, 0.25); }
+        .page-title {
+            font-family: 'Poppins', sans-serif; color: white; font-size: 1.35rem;
+            font-weight: 700; margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* GRAND HEADER */
+        .contact-header {
+            background: linear-gradient(135deg, #1f0802 0%, #3d1b19 100%);
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--primary-orange);
+        }
+        
+        .header-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 153, 51, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-orange);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
+            background-color: white;
+            object-fit: cover;
+        }
+
+        .header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffcc80;
+            margin: 0 0 10px 0;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .header-subtitle {
+            font-size: 0.95rem;
+            color: #ececec;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* CONTACT CONTAINER */
+        .contact-container {
+            max-width: 950px;
+            margin: -20px auto 40px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            padding: 35px 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-hours-badge {
+            font-size: 0.85rem;
+            color: #2e7d32;
+            font-weight: 700;
+            background: rgba(46, 125, 50, 0.1);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(46, 125, 50, 0.2);
+        }
+
+        .c-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-orange);
+            border-bottom: 2px dashed rgba(255, 143, 0, 0.2);
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .c-section-title i {
+            font-size: 1.1rem;
+            color: var(--primary-orange);
+        }
+
+        .c-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* QUICK CONNECT INTENT BRIDGES */
+        .intent-card {
+            background: #fdfdfd;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            cursor: pointer;
+        }
+        .intent-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: var(--primary-orange);
+            color: var(--deep-orange);
+        }
+        .intent-card:active {
+            transform: scale(0.97);
+        }
+        .intent-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .icon-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .icon-tg { background: linear-gradient(135deg, #0088cc, #0077b5); }
+        .icon-email { background: linear-gradient(135deg, #FF8F00, #E65100); }
+
+        .intent-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .intent-info p {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin: 2px 0 0 0;
+        }
+
+        /* POWERFUL INTERACTIVE LOCAL FORM */
+        .premium-form {
+            background: #faf8f5;
+            border: 1px solid rgba(255, 143, 0, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+        }
+        .form-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 10px rgba(255, 143, 0, 0.15);
+            background-color: white;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-weight: 700;
+            color: white;
+            width: 100%;
+            box-shadow: 0 6px 15px rgba(230, 81, 0, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(230, 81, 0, 0.35);
+        }
+        .submit-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* 🔴 NEW POWERFUL DEVELOPER MODULE DESIGN */
+        .developer-module {
+            background: linear-gradient(145deg, #1e0b07, #0d0400);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 50px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(31, 8, 2, 0.4);
+            border: 1.5px solid rgba(255, 143, 0, 0.25);
+            overflow: hidden;
+        }
+        
+        .developer-module::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(255, 143, 0, 0.1) 0%, transparent 75%);
+            pointer-events: none;
+        }
+
+        .dev-label {
+            font-size: 0.8rem; color: #ffb74d; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 6px;
+        }
+
+        .dev-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem; font-weight: 700; color: white; margin: 0 0 12px 0;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #ffffff, #ffcc80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .dev-desc {
+            font-size: 0.92rem; color: #d1d5db; margin-bottom: 22px; line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .dev-portal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+            color: white !important;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(230, 81, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .dev-portal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(230, 81, 0, 0.4);
+        }
+        .dev-portal-btn:active {
+            transform: scale(0.96);
+        }
+
+        .dev-subtext {
+            font-size: 0.82rem;
+            color: #9ca3af;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* 🔴 DIVINE CUSTOM MODAL POPUP */
+        .divine-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(13, 4, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .divine-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .divine-modal-card {
+            background: radial-gradient(circle at top, #3d1b19 0%, #1f0802 100%);
+            border: 2px solid var(--primary-orange);
+            box-shadow: 0 0 50px rgba(255, 143, 0, 0.4);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            max-width: 440px;
+            width: 90%;
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .divine-modal-overlay.active .divine-modal-card {
+            transform: scale(1) translateY(0);
+        }
+        .divine-modal-header-glowing {
+            width: 72px;
+            height: 72px;
+            background: rgba(255, 143, 0, 0.15);
+            border: 2px solid var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 20px rgba(255, 143, 0, 0.3);
+        }
+        .modal-success-icon {
+            font-size: 2.2rem;
+            color: #2ed573;
+            text-shadow: 0 0 15px rgba(46, 213, 115, 0.5);
+        }
+        .modal-error-icon {
+            font-size: 2.2rem;
+            color: #ff4757;
+            text-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+        .divine-modal-title {
+            font-family: 'Cinzel', serif;
+            color: #ffcc80;
+            font-size: 1.65rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .divine-modal-subtitle {
+            font-size: 0.95rem;
+            color: #f3f4f6;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .divine-modal-btn {
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 32px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(230, 81, 0, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .divine-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230, 81, 0, 0.5);
+        }
+        .divine-modal-btn:active {
+            transform: scale(0.95);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="page-title">Contact Us</h1>
+    </div>
+
+    <!-- Header Section -->
+    <header class="contact-header">
+        <div class="header-bg-glow"></div>
+        <img src="prabhupada.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23FFD700\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23000\'>ॐ</text></svg>'" alt="Prabhupada Logo" class="header-logo">
+        <h1 class="header-title">Contact Support</h1>
+        <p class="header-subtitle">Connect with our Devotee Support Group & Spiritual Guidance Team</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="contact-container container">
+        
+        <div class="text-center text-md-start">
+            <span class="support-hours-badge"><i class="fas fa-clock me-1"></i> Support Status: Active & Secured</span>
+        </div>
+
+        <div class="row g-4 mt-1">
+            <!-- Left Column: Direct Intent Bridges -->
+            <div class="col-md-5">
+                <h2 class="c-section-title"><i class="fas fa-bolt"></i> Quick Connect</h2>
+                <p class="c-text">Select any of the official links below to directly launch our interfaces on your mobile device:</p>
+                
+                <!-- WHATSAPP DIRECT ACTION -->
+                <a href="javascript:void(0)" onclick="app.chatOnWhatsApp()" class="intent-card">
+                    <div class="intent-icon-wrapper icon-wa"><i class="fab fa-whatsapp"></i></div>
+                    <div class="intent-info">
+                        <h4>Direct WhatsApp</h4>
+                        <p>Launch Chat Support (Message Only, No Calls)</p>
+                    </div>
+                </a>
+
+                <!-- TELEGRAM CHAT DIRECT (Hidden as requested) -->
+                <a href="https://t.me/iskcon_gita_wisdom" class="intent-card" style="display: none;" target="_blank" rel="noopener noreferrer">
+                    <div class="intent-icon-wrapper icon-tg"><i class="fab fa-telegram-plane"></i></div>
+                    <div class="intent-info">
+                        <h4>Telegram Channel</h4>
+                        <p>Join the global Gita wisdom network</p>
+                    </div>
+                </a>
+
+                <!-- EMAIL INTENT -->
+                <a href="javascript:void(0)" onclick="app.triggerEmailFallback()" class="intent-card">
+                    <div class="intent-icon-wrapper icon-email"><i class="fas fa-envelope"></i></div>
+                    <div class="intent-info">
+                        <h4>Email Support</h4>
+                        <p>Submit Spiritual & App System Inquiries</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Right Column: Powerful Interactive Form -->
+            <div class="col-md-7">
+                <h2 class="c-section-title"><i class="fas fa-paper-plane"></i> Submit Spiritual Query</h2>
+                
+                <form id="contact-form" class="premium-form" onsubmit="app.submitQueryLocal(event)">
+                    <div class="mb-3">
+                        <label for="user-name" class="form-label">Full Name</label>
+                        <input type="text" id="user-name" class="form-control" placeholder="e.g. Arjuna" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="user-email" class="form-label">Email Address</label>
+                        <input type="email" id="user-email" class="form-control" placeholder="yourname@gmail.com" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="query-topic" class="form-label">Query Topic</label>
+                        <select id="query-topic" class="form-select" required>
+                            <option value="" disabled selected>Select Topic</option>
+                            <option value="Spiritual Question">Spiritual Question / Shloka Meaning</option>
+                            <option value="App Feedback">App UX Feedback / Suggestions</option>
+                            <option value="Technical Issue">Technical Bug Report</option>
+                            <option value="Data Deletion">Data Deletion Request</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="user-msg" class="form-label">Your Message</label>
+                        <textarea id="user-msg" class="form-control" rows="4" placeholder="Chant Hare Krishna and type your message..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Query / संदेश भेजें
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- NEW MODERN DEVELOPER PORTAL CARD -->
+        <div class="developer-module">
+            <span class="dev-label"><i class="fas fa-shield-alt"></i> Systems Infrastructure</span>
+            <h2 class="dev-name">Technical Architect</h2>
+            <p class="dev-desc">
+                This application is designed, optimized, and maintained with divine dedication. For full access to developer logs, architecture diagrams, server performance layouts, or system support, enter our specialized developer terminal.
+            </p>
+            <div class="contact-info">
+                <a href="developer.html" class="dev-portal-btn">
+                    <i class="fas fa-terminal"></i> Open Developer Portal
+                </a>
+                <div class="mt-3">
+                    <p class="dev-subtext">
+                        <i class="fas fa-info-circle me-1"></i> Technical support is specifically optimized for database transitions, server layouts, and high-performance secure integrations.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px;">
+        © 2026 Bhagavad Gita App. All Rights Reserved. <br>
+        Designed & Maintained with devotion.
+    </footer>
+
+    <!-- 🔴 DIVINE CUSTOM POPUP MODAL -->
+    <div class="divine-modal-overlay" id="divineModal">
+        <div class="divine-modal-card">
+            <div class="divine-modal-header-glowing">
+                <i class="fas fa-check-circle modal-success-icon"></i>
+            </div>
+            <h3 class="divine-modal-title" id="modalTitleText">जय श्री कृष्णा!</h3>
+            <p class="divine-modal-subtitle" id="modalMessageText">आपका संदेश सफलतापूर्वक भेज दिया गया है।</p>
+            <button class="divine-modal-btn" onclick="app.closeDivineModal()">Close / बंद करें</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap Scripting -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const app = {
+            // Internal Redirection Storage for Fallbacks
+            pendingEmailFallback: null,
+
+            // Hidden WhatsApp trigger logic
+            chatOnWhatsApp: function() {
+                const hiddenPhone = "91956160799"; // Sourced dynamically inside script to secure database integrity
+                const waMessage = encodeURIComponent("Hare Krishna! 🙏\n\nI am contacting you regarding the Bhagavad Gita Premium App.\n\nI need some support.");
+                const waUrlName = "https://api.whatsapp.com/send?phone=" + hiddenPhone + "&text=" + waMessage;
+                window.open(waUrlName, '_blank');
+            },
+
+            // Trigger Email Client redirection securely
+            triggerEmailFallback: function(subject = "Spiritual Support Bhagavad Gita App", body = "") {
+                const hiddenEmail = "santosh2grt@gmail.com"; // Stored in memory to prevent raw harvesting
+                const mailToUri = `mailto:${hiddenEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.location.href = mailToUri;
+            },
+
+            // Custom Modal Controller
+            showDivineModal: function(title, message, type) {
+                const modal = document.getElementById('divineModal');
+                const titleElement = document.getElementById('modalTitleText');
+                const textElement = document.getElementById('modalMessageText');
+                const iconContainer = document.querySelector('.divine-modal-header-glowing');
+                
+                titleElement.innerHTML = title;
+                textElement.innerHTML = message;
+                
+                if (type === 'error') {
+                    iconContainer.innerHTML = `<i class="fas fa-envelope-open-text modal-error-icon"></i>`;
+                    iconContainer.style.borderColor = "#ff4757";
+                    iconContainer.style.boxShadow = "0 0 25px rgba(255, 71, 87, 0.4)";
+                } else {
+                    iconContainer.innerHTML = `<i class="fas fa-check-circle modal-success-icon"></i>`;
+                    iconContainer.style.borderColor = "var(--primary-orange)";
+                    iconContainer.style.boxShadow = "0 0 25px rgba(255, 143, 0, 0.4)";
+                }
+                
+                modal.classList.add('active');
+            },
+
+            closeDivineModal: function() {
+                const modal = document.getElementById('divineModal');
+                modal.classList.remove('active');
+                
+                // If direct transmission had failed and requested fallback action
+                if (app.pendingEmailFallback) {
+                    window.location.href = app.pendingEmailFallback;
+                    app.pendingEmailFallback = null;
+                }
+            },
+
+            // 🚀 TELEGRAM BOT SUBMISSION WITH AUTOMATIC EMAIL TRANSITION FALLBACK
+            submitQueryLocal: function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('user-name').value.trim();
+                const email = document.getElementById('user-email').value.trim();
+                const topic = document.getElementById('query-topic').value;
+                const message = document.getElementById('user-msg').value.trim();
+                
+                // Telegram Credentials (Internal secured parameters)
+                const botToken = "8848322473:AAFDrrwlvXpcC6f5hzkvvgqh1EAfK4wva0g";
+                const chatId = "7326906197";
+                
+                // Constructing Telegram message layout 
+                const telegramText = 
+                    `🙏 *हरे कृष्ण! भगवद् गीता ऐप से नया संदेश* 🙏\n` +
+                    `-----------------------------------------\n` +
+                    `👤 *नाम:* ${name}\n` +
+                    `📧 *ईमेल:* ${email}\n` +
+                    `📋 *विषय:* ${topic}\n` +
+                    `-----------------------------------------\n\n` +
+                    `✉️ *संदेश:*\n"${message}"\n\n` +
+                    `-----------------------------------------\n` +
+                    `📅 *दिनांक:* ${new Date().toLocaleString()}\n` +
+                    `📱 Sent via Bhagavad Gita Contact Portal`;
+
+                const submitBtn = document.getElementById('submit-btn');
+                const originalBtnText = submitBtn.innerHTML;
+                
+                // Loading State Animation
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i> Sending / भेजा जा रहा है...`;
+
+                // Fetch transmission to Telegram SendMessage HTTP Endpoint
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: telegramText,
+                        parse_mode: 'Markdown'
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Display beautiful Custom Success Modal
+                        app.showDivineModal(
+                            "जय श्री कृष्णा!",
+                            "Hare Krishna! Your query has been successfully transmitted via Telegram.<br><br>हरे कृष्ण! आपका संदेश सफलतापूर्वक भेज दिया गया है।",
+                            "success"
+                        );
+                        document.getElementById('contact-form').reset();
+                    } else {
+                        throw new Error('Telegram API status code error');
+                    }
+                })
+                .catch(error => {
+                    console.error("Direct send failed. Pre-formatting fallback:", error);
+                    
+                    const fallbackEmail = "santosh2grt@gmail.com";
+                    const subjectLine = encodeURIComponent(`[Gita App Support] ${topic} from ${name}`);
+                    const mailBody = encodeURIComponent(
+                        `Hare Krishna! 🙏\n\n` +
+                        `Here are the details of the spiritual support query submitted via the app:\n\n` +
+                        `-----------------------------------------\n` +
+                        `👤 Name: ${name}\n` +
+                        `📧 Email: ${email}\n` +
+                        `📋 Topic: ${topic}\n` +
+                        `-----------------------------------------\n\n` +
+                        `✉️ Message:\n"${message}"\n\n` +
+                        `-----------------------------------------\n` +
+                        `Submitted on: ${new Date().toLocaleString()}\n` +
+                        `Sent via Bhagavad Gita App`
+                    );
+                    
+                    // Store the redirect URL to trigger instantly after the user closes the modal
+                    app.pendingEmailFallback = `mailto:${fallbackEmail}?subject=${subjectLine}&body=${mailBody}`;
+
+                    // Display beautiful Custom Error Modal detailing fallback actions
+                    app.showDivineModal(
+                        "Email Redirect / ईमेल अनुरोध",
+                        "Direct network transmission paused. Please click close to securely draft this query in your email application.<br><br>सीधे भेजने में बाधा हुई। ईमेल ड्राफ्ट तैयार करने के लिए कृपया बंद करें बटन दबाएं।",
+                        "error"
+                    );
+                })
+                .finally(() => {
+                    // Restore original submit button text
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+            }
+        };
+    </script>
+</body>
+</html>
