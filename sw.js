@@ -1,5 +1,5 @@
 /* Offline web shell. Native Android network handling is configured separately. */
-const VERSION='gita-v12-1',CORE=VERSION+'-core',RUNTIME=VERSION+'-runtime';
+const VERSION='gita-v12-2',CORE=VERSION+'-core',RUNTIME=VERSION+'-runtime';
 const FILES=['./','index.html','data/gita-v2.json','assets/fonts/inter.ttf','assets/fonts/devanagari.ttf','logo.png','manifest.webmanifest','assets/art/chariot.webp'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CORE).then(c=>c.addAll(FILES))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('gita-v')&&!k.startsWith(VERSION)&&k!=='gita-v12-art').map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

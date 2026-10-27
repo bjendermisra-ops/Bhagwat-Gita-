@@ -4,7 +4,7 @@ Static, mobile-first reader and verse card studio. Deploy the repository root to
 
 ## Included
 
-- Redesigned responsive Home, chapter reader, Search, Studio and Library; light/dark appearance.
+- Custom editorial maximalist interface: lilac/lime/coral cover, print-style artwork gallery, bold chapter index and floating navigation. The reader keeps a quiet high-contrast surface, adjustable type and focus mode. Light/dark appearance throughout.
 - All-chapter Sanskrit/transliteration/translation/commentary search, Roman-Hindi aliases, Devanagari digits, chapter.verse lookup and chapter filters.
 - Deterministic daily verse using Asia/Kolkata date. Schedules the next midnight while open, with a 30-second safety check and an immediate check on resume; no background notification claim.
 - Bookmarks, personal reflections, collections, reading progress, chapter journey, recall mode, language comparison and JSON backup/merge restore.
