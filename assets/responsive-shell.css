@@ -256,3 +256,23 @@ button{touch-action:manipulation}
   .nav button{min-height:42px;padding:7px 12px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Focus reading is truly distraction-free on a desktop too: hide the rail. */
+@media(min-width:1100px){
+  body.focus::before{display:none}
+  body.focus main{width:100%;margin-left:0;padding:clamp(22px,3vh,52px) clamp(24px,4vw,80px) 82px}
+  body.focus .reader{width:100%;max-width:860px}
+  /* Keep actual Krishna–Arjuna artwork visible on ultrawide covers. */
+  .daily-cover{
+    background-image:
+      linear-gradient(90deg,rgba(16,45,36,.98) 0%,rgba(16,45,36,.94) 37%,rgba(16,45,36,.48) 66%,rgba(16,45,36,.18) 100%),
+      url('../assets/art/chariot.webp');
+    background-size:cover,auto 127%;
+    background-position:center,right 61%;
+    background-repeat:no-repeat;
+    background-color:#173d32
+  }
+  body.dark .daily-cover{
+    background-color:#131313
+  }
+}
