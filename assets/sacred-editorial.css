@@ -691,3 +691,185 @@ dialog input:not([type=checkbox]):not([type=range]),dialog select{
   html{scroll-behavior:auto}
   button{transition:none!important}
 }
+
+
+/* v13.1: monochrome night, soft reading light, and branded Play Store CTAs */
+.app-download-promo{
+  display:flex;align-items:center;gap:17px;
+  padding:18px 21px;margin-top:29px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:var(--surface)
+}
+.app-download-promo img,.studio-app-promo img,.settings-app-promo img{
+  flex:none;width:62px;height:62px;
+  border:1px solid var(--line);border-radius:13px;
+  background:#fff;object-fit:cover
+}
+.app-download-promo>div{min-width:0;flex:1}
+.app-download-promo strong,.studio-app-promo strong,.settings-app-promo strong{
+  display:block;color:var(--ink);font-weight:780;
+  font-size:16px;line-height:1.45
+}
+.app-download-promo p,.studio-app-promo p{
+  font-size:12px;color:var(--muted);
+  margin:4px 0 0;line-height:1.6
+}
+.play-store-link{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  white-space:nowrap;background:#254b3e;color:#fffaf1;
+  padding:13px 17px;border-radius:10px;
+  text-decoration:none;font-size:12px;font-weight:750;
+  min-height:46px
+}
+.play-store-link svg{width:17px;height:17px}
+.play-store-link:hover{background:#18392e}
+.studio-app-promo{
+  display:flex;align-items:center;gap:15px;
+  background:var(--soft);border:1px solid var(--line);
+  border-radius:13px;padding:15px;margin-top:22px
+}
+.studio-app-promo img{width:57px;height:57px}
+.studio-app-promo a{
+  display:inline-block;color:var(--brand);font-size:12px;
+  font-weight:750;margin-top:9px
+}
+.settings-app-promo{display:flex;align-items:center;gap:14px;margin-top:15px}
+.settings-app-promo img{width:57px;height:57px}
+.settings-app-promo span{min-width:0}
+.settings-app-promo a{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:8px;color:var(--brand);font-size:12px;font-weight:750
+}
+.settings-app-promo a svg{width:15px;height:15px}
+/* Grayscale, near-black mode. Prevent very bright whites, high-glare areas
+   and saturated blue accents, while keeping text legible. */
+body.dark{
+  --bg:#090909;
+  --surface:#141414;
+  --ink:#dfdfdc;
+  --muted:#a0a09c;
+  --line:#30302e;
+  --brand:#dadad6;
+  --soft:#212120;
+  --gold:#bcbcb6;
+  color-scheme:dark;
+  background:#090909;
+  background-image:none
+}
+body.dark .appbar,body.dark main{background:transparent}
+body.dark .appbar select,body.dark .iconbtn,body.dark .appbar .iconbtn{
+  background:#181818;border-color:#363635;color:#e0e0dc
+}
+body.dark .primary,
+body.dark .hero .primary,
+body.dark .play-store-link{
+  background:#d5d5d0;color:#111110;border-color:#d5d5d0
+}
+body.dark .primary:hover,body.dark .hero .primary:hover,body.dark .play-store-link:hover{
+  background:#babbb6
+}
+body.dark .secondary{background:#1b1b1b;color:#dfdfdc;border-color:#383836}
+body.dark .chip.active,
+body.dark .reader-toolbar .chip.active{
+  background:#deded8;color:#111110;border-color:#bcbcb7
+}
+body.dark .daily-cover{
+  filter:grayscale(1) brightness(.83);
+  box-shadow:none;border-color:#414140
+}
+body.dark .hero-art img,
+body.dark .arttile img,
+body.dark .thumb img,
+body.dark .brandmark img{filter:grayscale(1) brightness(.78)}
+body.dark .hero,
+body.dark .topic,
+body.dark .result,
+body.dark .card,
+body.dark .reader .card,
+body.dark .searchbox,
+body.dark .canvaswrap,
+body.dark .app-download-promo{background:#131313;color:#dfdfdc;border-color:#313130}
+body.dark .hero h2,body.dark .hero p,body.dark .topic strong,
+body.dark .intro h1,body.dark .chapter h3{color:var(--ink)}
+body.dark .hero .verse-ticket{background:#242424;color:#e0e0dc;border-color:#393938}
+body.dark .art-caption{
+  background:#161616;color:#e7e7e1;border-color:#4d4d4b
+}
+body.dark .resume-note,
+body.dark .search-poster{
+  background:#1a1a1a;
+  color:#e0e0dc;
+  border-color:#363635
+}
+body.dark .resume-note p,
+body.dark .search-sample,
+body.dark .search-poster .eyebrow{color:#babbb5;border-color:#3e3e3c}
+body.dark .topic,body.dark .topic:nth-child(n){background:#141414!important}
+body.dark .topic:hover,body.dark .topic:nth-child(n):hover{background:#242423!important}
+body.dark .topic svg,body.dark .chapter .arr{color:#c7c7c0}
+body.dark .chapter .number,
+body.dark .chapter:nth-child(4n+1) .number,
+body.dark .chapter:nth-child(4n+2) .number{background:#252525;color:#e0e0dc}
+body.dark .studio-poster{
+  background:#111111;color:#e2e2dd;border:1px solid #393939
+}
+body.dark .studio-poster h2,
+body.dark .studio-poster .eyebrow,
+body.dark .studio-foot,
+body.dark .studio-foot span{color:#deded8}
+body.dark .studio-poster .round-arrow{background:#262626;border-color:#5a5a59;color:#e5e5df}
+body.dark .stats,body.dark .notice,body.dark .studio-app-promo{background:#202020;color:#e2e2de;border-color:#383837}
+body.dark .reader .verse,
+body.dark .reader .readingtext,
+body.dark .reader .readinglabel{color:#d9d9d4}
+body.dark .reader .translit{color:#aaa9a4}
+body.dark .reader .divider{border-color:#343432}
+body.dark .reader textarea,
+body.dark dialog input:not([type=checkbox]):not([type=range]),
+body.dark dialog select{background:#111;border-color:#3d3d3b;color:#deded9}
+body.dark .nav{
+  background:rgba(17,17,17,.97);
+  border-color:#393937;
+  box-shadow:0 12px 28px rgba(0,0,0,.4)
+}
+body.dark .nav button{color:#aaa9a5}
+body.dark .nav button.active{color:#f0f0e9;background:#30302f}
+body.dark .nav button.active svg{color:#ededdf}
+body.dark .canvaswrap{background:#1b1b1b}
+body.dark .studio-actions{background:#171717;border-color:#363636}
+body.dark dialog{background:#171717;color:#e4e4df;border-color:#40403e}
+body.dark #toast{background:#e3e2dc;color:#131313}
+body.dark .journey-number{color:#d5d5d0}
+body.dark .app-download-promo img,
+body.dark .studio-app-promo img,
+body.dark .settings-app-promo img{filter:grayscale(1)}
+body.dark .studio-app-promo a,body.dark .settings-app-promo a{color:#e0e0d9}
+/* Optional comfort layer uses a warm/dimmer neutral, not a promise of blue-light blocking. */
+body.dark.eye-comfort{
+  --ink:#c9c3b7;
+  --muted:#999287;
+  --brand:#c9c3b7;
+  --gold:#aba392;
+}
+body.dark.eye-comfort .reader .verse,
+body.dark.eye-comfort .reader .readingtext,
+body.dark.eye-comfort .reader .readinglabel{color:#c9c3b7}
+body.dark.eye-comfort .reader .translit{color:#9b9489}
+body.dark.eye-comfort .hero h2,
+body.dark.eye-comfort .hero p,
+body.dark.eye-comfort .chapter h3,
+body.dark.eye-comfort .topic strong{color:#c9c3b7}
+body.dark.eye-comfort .daily-cover{filter:grayscale(1) brightness(.66)}
+body.dark.eye-comfort .hero-art img,
+body.dark.eye-comfort .arttile img{filter:grayscale(1) brightness(.58)}
+@media(max-width:700px){
+  .app-download-promo{flex-wrap:wrap;gap:12px;padding:16px;margin-top:23px}
+  .app-download-promo img{width:57px;height:57px}
+  .app-download-promo>div{flex:1 1 calc(100% - 74px)}
+  .app-download-promo strong{font-size:14px}
+  .app-download-promo .play-store-link{width:100%}
+  .studio-app-promo{padding:13px}
+  .studio-app-promo strong{font-size:13px}
+  .studio-app-promo p{font-size:11px}
+}
