@@ -69,6 +69,17 @@ fs.mkdirSync(qa,{recursive:true});
      }
    }
  }
+ // Desktop focus mode must reclaim the sidebar's full width.
+ await page.setViewportSize({width:1440,height:900});
+ await page.evaluate(()=>{openVerse('2.47');if(!focusMode)toggleFocus()});
+ const focusCheck=await page.evaluate(()=>({
+   mainLeft:document.querySelector('main').getBoundingClientRect().left,
+   mainRight:document.querySelector('main').getBoundingClientRect().right,
+   screen:innerWidth,
+   railHidden:getComputedStyle(document.body,'::before').display==='none'
+ }));
+ assert(focusCheck.mainLeft<=1&&focusCheck.mainRight>=1439&&focusCheck.railHidden,'Focus mode must hide sidebar and fill desktop: '+JSON.stringify(focusCheck));
+ await page.evaluate(()=>{if(focusMode)toggleFocus()});
  // Night mode should be remembered when moving between screens.
  await page.setViewportSize({width:390,height:844});
  await page.evaluate(()=>{openVerse('2.47');if(!document.body.classList.contains('dark'))toggleReadingNight()});
