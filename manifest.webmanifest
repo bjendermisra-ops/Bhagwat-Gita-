@@ -1,1 +1,17 @@
-{"name":"Bhagavad Gita · Daily Wisdom","short_name":"Bhagavad Gita","start_url":"./","scope":"./","display":"standalone","background_color":"#f6f2e9","theme_color":"#f6f2e9","icons":[{"src":"logo.png","sizes":"any","type":"image/png","purpose":"any"}]}
+{
+  "name": "Bhagavad Gita: Shlok & Meaning",
+  "short_name": "Bhagavad Gita",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ee",
+  "theme_color": "#f7f5ee",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
