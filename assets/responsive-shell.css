@@ -1,0 +1,258 @@
+/* Adaptive App Shell 2026: Small phone → tablet → full desktop workspace.
+   Linked after the Sacred Editorial design system to keep app logic intact.
+   Breakpoints follow available CSS viewport width, not device marketing size. */
+:root{--app-rail:252px;--app-tab-safe:env(safe-area-inset-bottom,0px)}
+html{min-width:0}
+body{min-width:0;min-height:100vh;min-height:100dvh}
+body,main,.appbar,.nav,.home-editorial,.hero,.hero-inner,.daily-side,.studio,.studio-options,.canvaswrap,.chaptergrid,.app-download-promo{min-width:0}
+main{width:auto}
+button,input,select,textarea{max-width:100%}
+img,canvas{max-width:100%}
+button{touch-action:manipulation}
+.canvaswrap{overflow:hidden}
+.canvaswrap canvas{object-fit:contain;max-width:100%;width:auto;height:auto}
+.studio{align-items:start}
+.studio-options .horizontal{max-width:100%;overscroll-behavior-x:contain}
+.studio-options .thumbgrid{min-width:0}
+.studio-options .optionrow{min-width:0;gap:10px}
+.studio-options .optionrow input[type=range]{min-width:80px;max-width:44%}
+.studio-actions{
+  position:static!important;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:22px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none
+}
+.studio-actions button{min-width:0;min-height:48px}
+.nav{z-index:50}
+.nav button{min-height:52px}
+.reader{width:100%;max-width:760px}
+.reader .reader-toolbar{align-items:center}
+.reader .reader-toolbar .chip{min-height:40px}
+.reader .tabrow{gap:9px}
+.reader .tabrow button{min-height:43px}
+.intro h1{overflow-wrap:break-word}
+.result .versepreview,.result .meaningpreview,.reader .readingtext,.reader .translit,.reader .verse,
+.hero h2,.hero p,.chapter h3,.cover-title h1,.app-download-promo strong{overflow-wrap:anywhere}
+.chapter .number{flex-shrink:0}
+.chapter>span:nth-child(2){min-width:0}
+.daily-cover{width:100%}
+.daily-side{min-width:0}
+.studio .canvaswrap{width:100%}
+.studio .canvaswrap .row{flex-wrap:wrap}
+.studio .canvaswrap canvas{max-height:min(68dvh,650px)}
+/* Compact phones: content first, bottom navigation second.
+   Never overlay primary save/share controls with a sticky second bar. */
+@media(max-width:599px){
+  .appbar{width:100%;gap:8px}
+  .brandmark{min-width:0;flex:1 1 auto}
+  .brandmark span{min-width:0}
+  .appbar>.row{flex:0 0 auto;gap:6px;max-width:45%}
+  .appbar select{min-width:0;max-width:81px}
+  main{width:auto;margin:0 14px;padding:18px 0 calc(125px + var(--app-tab-safe))}
+  .home-editorial{grid-template-columns:minmax(0,1fr);gap:13px}
+  .daily-cover{
+    min-height:clamp(330px,104vw,398px);
+    padding:20px 22px
+  }
+  .cover-title{min-height:clamp(198px,59vw,245px)}
+  .cover-title h1{font-size:clamp(26px,7.4vw,35px);line-height:1.64}
+  .daily-side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .hero-inner{padding:22px 20px}
+  .hero h2{font-size:clamp(18px,5.5vw,22px)}
+  .hero-art{min-height:190px}
+  .topicgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .studio{display:flex;flex-direction:column;gap:19px}
+  .studio .canvaswrap{position:relative;top:auto;padding:12px 12px 15px}
+  .studio .canvaswrap canvas{max-height:min(42dvh,410px);max-width:100%}
+  .studio-options{min-width:0;width:100%}
+  .studio-options .thumbgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  .studio-options .thumb{min-width:0}
+  .studio-options .studio-actions{position:static!important;background:none;bottom:auto;padding:0;border:0}
+  .studio-actions button{min-height:50px;white-space:normal}
+  .studio-options .sectionhead{flex-wrap:wrap}
+  .studio-options .optionrow{padding:14px 0}
+  .studio-options .optionrow input[type=checkbox]{flex-shrink:0}
+  .studio-options .tabrow{gap:7px}
+  .studio-options .tabrow .chip{flex:0 0 auto}
+  .reader{max-width:none}
+  .reader .card{padding:23px 18px}
+  .reader .verse{padding:23px 0;line-height:2.05}
+  .reader .readingtext{line-height:2.02}
+  .reader-toolbar{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+  .reader-toolbar .chip{font-size:10px}
+  .nav{width:calc(100% - 16px);bottom:calc(7px + var(--app-tab-safe));padding:5px}
+  .nav button{min-width:0;flex:1 1 0;min-height:56px;padding:6px 2px;gap:3px;font-size:9px}
+  .nav button svg{width:20px;height:20px}
+  .filters{gap:7px}
+  .filters select{min-width:0;max-width:none;flex:1 1 0}
+  .artstrip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .studio-poster .arttile{height:165px}
+  .app-download-promo{align-items:flex-start}
+}
+@media(max-width:359px){
+  main{margin:0 10px;padding-bottom:calc(126px + var(--app-tab-safe))}
+  .appbar{padding:12px 10px;gap:4px}
+  .brandmark{gap:7px}
+  .brandmark img{width:34px;height:34px}
+  .brandmark strong{font-size:13px;letter-spacing:-.45px}
+  .brandmark small{font-size:6.5px;letter-spacing:.25px}
+  .appbar .row{gap:4px}
+  .appbar select{max-width:70px;font-size:10px;padding:7px 4px}
+  .appbar .iconbtn{width:35px;height:35px}
+  .daily-cover{padding:17px;min-height:330px}
+  .edition-line{font-size:8px}
+  .cover-title h1{font-size:25px;line-height:1.6}
+  .cover-title{min-height:198px}
+  .hero-inner{padding:19px 15px}
+  .hero h2{font-size:18px}
+  .hero p{font-size:14px}
+  .daily-side{gap:8px}
+  .resume-note,.search-poster{padding:13px 9px}
+  .resume-note h2,.search-poster h2{font-size:13px}
+  .resume-number{font-size:31px}
+  .search-sample{font-size:9px}
+  .topic{padding:13px}
+  .topic strong{font-size:17px}
+  .nav button{font-size:8px}
+  .reader .card{padding:19px 13px}
+  .reader-toolbar .chip{font-size:9px;padding:7px 8px}
+  .studio .canvaswrap canvas{max-height:39dvh}
+  .studio .thumbgrid{gap:5px}
+  .studio-options h3{font-size:15px}
+}
+/* Large phones, foldables and tablets. Use the width without growing
+   the reader text to uncomfortable line lengths. */
+@media(min-width:600px) and (max-width:799px){
+  .appbar{max-width:none;padding:18px 25px}
+  main{margin:0 26px;max-width:none;padding:27px 0 calc(130px + var(--app-tab-safe))}
+  .home-editorial{grid-template-columns:minmax(0,1fr)}
+  .daily-side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .daily-cover{min-height:335px}
+  .cover-title{min-height:180px}
+  .cover-title h1{font-size:clamp(32px,5vw,43px)}
+  .chaptergrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px}
+  .studio{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);display:grid;gap:21px}
+  .studio .canvaswrap{position:sticky;top:15px}
+  .studio .canvaswrap canvas{max-height:min(58dvh,650px)}
+  .studio-actions{position:static!important}
+  .artstrip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .nav{width:min(610px,calc(100% - 22px))}
+}
+@media(min-width:800px) and (max-width:1099px){
+  .appbar{max-width:none;padding:20px 30px}
+  main{max-width:none;margin:0 34px;padding:30px 0 calc(135px + var(--app-tab-safe))}
+  .home-editorial{grid-template-columns:minmax(0,1.25fr) minmax(270px,.84fr);gap:19px}
+  .daily-side{display:flex;flex-direction:column}
+  .daily-cover{min-height:350px}
+  .studio{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:26px}
+  .studio .canvaswrap{position:sticky;top:20px}
+  .studio .canvaswrap canvas{max-height:min(65dvh,740px)}
+  .chaptergrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+  .topicgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .nav{width:min(635px,calc(100% - 24px))}
+}
+/* Desktop = app, not a narrow mobile website.
+   Permanent navigation rail; full-height primary workspace; proper panels. */
+@media(min-width:1100px){
+  :root{--app-rail:clamp(236px,17vw,286px)}
+  body{display:block;min-height:100dvh;padding-left:0}
+  body::before{
+    content:'';position:fixed;left:0;top:0;bottom:0;
+    width:var(--app-rail);z-index:29;
+    background:var(--surface);border-right:1px solid var(--line)
+  }
+  .appbar{
+    position:fixed;z-index:31;left:0;top:0;
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    width:var(--app-rail);max-width:none;
+    min-height:136px;padding:27px 18px 18px;
+    margin:0;background:var(--surface);
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line)
+  }
+  .brandmark{width:100%;gap:10px}
+  .brandmark img{width:45px;height:45px}
+  .brandmark strong{font-size:17px}
+  .brandmark small{font-size:8px;letter-spacing:.85px}
+  .appbar>.row{justify-content:space-between;width:100%;margin-top:15px}
+  .appbar select{min-width:100px;max-width:calc(100% - 59px)}
+  .appbar .iconbtn{width:42px;height:42px}
+  .nav{
+    position:fixed;z-index:31;top:154px;
+    left:13px;right:auto;bottom:auto;transform:none;
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    width:calc(var(--app-rail) - 26px);height:auto;
+    max-height:calc(100dvh - 180px);overflow-y:auto;
+    border:0;border-radius:0;box-shadow:none;
+    padding:0;gap:6px;background:transparent;
+    -webkit-backdrop-filter:none;backdrop-filter:none
+  }
+  .nav button{
+    flex:0 0 auto;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;
+    width:100%;min-width:0;min-height:53px;
+    padding:12px 15px;gap:14px;text-align:left;
+    font-size:13px;font-weight:700;letter-spacing:0;
+    border-radius:11px;color:var(--muted)
+  }
+  .nav button svg{width:21px;height:21px;flex:none}
+  .nav button span{text-align:left;min-width:0;white-space:normal}
+  .nav button.active{border-radius:11px;background:var(--soft);color:var(--brand)}
+  main{
+    display:block;
+    margin:0 0 0 var(--app-rail);
+    width:calc(100% - var(--app-rail));
+    max-width:none;min-height:100dvh;
+    padding:clamp(24px,2.3vw,52px) clamp(30px,3vw,78px) 100px
+  }
+  main>.intro{margin-top:0}
+  .daily-cover{
+    min-height:clamp(300px,33vh,485px);
+    border-radius:20px;padding:clamp(28px,2.7vw,52px)
+  }
+  .cover-title{min-height:clamp(195px,22vh,280px)}
+  .cover-title h1{font-size:clamp(38px,3vw,60px)}
+  .home-editorial{grid-template-columns:minmax(0,1.42fr) minmax(300px,.82fr);gap:22px}
+  .daily-side{display:flex;flex-direction:column}
+  .hero-art{min-height:clamp(205px,22vh,320px)}
+  .topicgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .topic{min-height:140px}
+  .artstrip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .studio{display:grid;grid-template-columns:minmax(0,.9fr) minmax(350px,1.1fr);gap:clamp(22px,3vw,54px);align-items:start}
+  .studio .canvaswrap{position:sticky;top:22px;padding:19px}
+  .studio .canvaswrap canvas{max-height:min(75dvh,950px)}
+  .studio-options{width:100%;max-width:none}
+  .studio-options .thumbgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .studio-options .optionrow{gap:18px}
+  .studio-actions{position:static!important;bottom:auto}
+  .chaptergrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+  .reader{max-width:850px}
+  .readerhead{margin-top:0}
+  .reader .card{padding:clamp(34px,4vw,65px)}
+  .reader .verse{font-size:calc(var(--font) + 8px)}
+  body[data-screen=reader] main{display:flex;flex-direction:column;align-items:center}
+  body[data-screen=reader] .reader{width:100%}
+  body[data-screen=studio] .studio{width:100%}
+  .app-download-promo{margin-bottom:30px}
+}
+/* Extra-wide desktop: use a three-dimensional editorial rhythm but keep
+   scripture prose at readable measure. */
+@media(min-width:1800px){
+  main{padding-left:clamp(58px,4vw,110px);padding-right:clamp(58px,4vw,110px)}
+  .home-editorial{grid-template-columns:minmax(0,1.6fr) minmax(360px,.7fr)}
+  .hero-inner{padding:34px 38px}
+  .studio{grid-template-columns:minmax(0,1.06fr) minmax(400px,.94fr)}
+  .topic{min-height:165px}
+}
+/* Very short landscape screens: navigation must still remain reachable. */
+@media(min-width:1100px) and (max-height:570px){
+  .appbar{padding-top:12px;padding-bottom:9px;min-height:105px}
+  .appbar>.row{margin-top:7px}
+  .nav{top:116px;max-height:calc(100dvh - 125px);gap:2px}
+  .nav button{min-height:42px;padding:7px 12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
