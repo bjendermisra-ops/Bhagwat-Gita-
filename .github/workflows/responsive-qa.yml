@@ -1,0 +1,50 @@
+name: Responsive UI QA
+on:
+  push:
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'sw.js'
+      - 'tests/responsive.cjs'
+      - '.github/workflows/responsive-qa.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'sw.js'
+      - 'tests/responsive.cjs'
+      - '.github/workflows/responsive-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium-visual-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout app
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser harness
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start static site
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/gita-server.log 2>&1 &
+          sleep 2
+      - name: Check responsive screens
+        run: node tests/responsive.cjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gita-responsive-screenshots
+          path: tests/artifacts/responsive/
+          if-no-files-found: ignore
+          retention-days: 7
