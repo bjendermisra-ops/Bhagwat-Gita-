@@ -873,3 +873,61 @@ body.dark.eye-comfort .arttile img{filter:grayscale(1) brightness(.58)}
   .studio-app-promo strong{font-size:13px}
   .studio-app-promo p{font-size:11px}
 }
+
+/* Independent Gita Quest entry point: no changes to existing runner game. */
+.quest-home-entry{
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ margin:27px 0 9px;padding:27px clamp(21px,3vw,39px);
+ border-radius:17px;overflow:hidden;position:relative;
+ background:#173b31;border:1px solid #335f48;color:#fff7df;
+ box-shadow:0 15px 28px #112e2718
+}
+.quest-home-entry:before{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(circle at 82% 38%,#c7aa7338,transparent 41%)
+}
+.quest-home-copy{position:relative;z-index:1;min-width:0;max-width:650px}
+.quest-home-copy .eyebrow{color:#e9c993;font-size:10px;letter-spacing:1.8px}
+.quest-home-entry h2{
+ font-family:Deva,Georgia,serif;font-size:clamp(23px,2.3vw,34px);
+ line-height:1.62;font-weight:600;color:#fff8e9;margin:8px 0
+}
+.quest-home-entry p{color:#deeadc;font-size:13px;line-height:1.8}
+.quest-home-action{
+ display:inline-flex;align-items:center;justify-content:center;gap:10px;
+ margin-top:18px;padding:12px 17px;min-height:45px;border-radius:10px;
+ background:#d8bb85;color:#1c392d;text-decoration:none;font-size:13px;font-weight:800
+}
+.quest-home-action:hover{background:#f0d59f}
+.quest-home-action svg{width:17px;height:17px}
+.quest-home-art{
+ flex:none;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
+ justify-content:center;width:172px;height:156px;border-radius:25px;
+ border:1px solid #c9b28955;background:#ffffff0c;transform:rotate(6deg);
+ color:#edd4aa
+}
+.quest-home-art .quest-emblem{font-size:58px;line-height:1}
+.quest-home-art .quest-spark{position:absolute;right:24px;top:7px;font-size:26px}
+.quest-home-art strong{font:800 30px Inter,sans-serif}
+.quest-home-art small{font:750 10px Inter,sans-serif;letter-spacing:2px}
+body.dark .quest-home-entry{background:#161616;border-color:#4e4e4c;box-shadow:none}
+body.dark .quest-home-entry:before{background:none}
+body.dark .quest-home-art{color:#e0dfda;border-color:#444}
+body.dark .quest-home-action{background:#d5d5d0;color:#171717}
+@media(max-width:700px){
+ .quest-home-entry{padding:20px 19px;gap:10px;min-height:206px}
+ .quest-home-entry h2{font-size:24px;line-height:1.58}
+ .quest-home-entry p{font-size:11px}
+ .quest-home-action{font-size:12px;padding:10px 13px;min-height:42px}
+ .quest-home-art{width:77px;height:110px;border-radius:15px}
+ .quest-home-art .quest-emblem{font-size:37px}
+ .quest-home-art .quest-spark{font-size:19px;right:5px}
+ .quest-home-art strong{font-size:21px}
+ .quest-home-art small{font-size:7px}
+}
+@media(max-width:360px){
+ .quest-home-entry{padding:16px 12px}
+ .quest-home-entry h2{font-size:21px}
+ .quest-home-art{width:58px;height:99px}
+ .quest-home-art .quest-emblem{font-size:29px}
+}
