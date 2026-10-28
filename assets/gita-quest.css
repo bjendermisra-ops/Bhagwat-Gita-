@@ -1,0 +1,213 @@
+@font-face{font-family:QuestSans;src:url('fonts/inter.ttf') format('truetype');font-display:swap}
+@font-face{font-family:QuestDeva;src:url('fonts/devanagari.ttf') format('truetype');font-display:swap}
+:root{
+  color-scheme:light;--forest:#102f27;--forest2:#1d4c3b;--gold:#d7ba82;--cream:#f8f3e7;--surface:#fffdf7;
+  --ink:#263a31;--muted:#6b766d;--line:#dddacb;--mint:#e9eee6;--shadow:0 18px 50px #17312618;
+  font-family:QuestSans,QuestDeva,system-ui,sans-serif;font-synthesis:none
+}
+*{box-sizing:border-box}
+html{min-width:0;background:var(--forest);scroll-behavior:smooth}
+body{margin:0;min-height:100vh;min-height:100dvh;background:var(--cream);color:var(--ink)}
+button,select{font:inherit;cursor:pointer}button{border:0}
+button:disabled{cursor:default;opacity:.55}
+button,a,select{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #ad8a43;outline-offset:3px}
+button:not(:disabled):active{transform:translateY(1px)}
+img{max-width:100%}
+h1,h2,h3,p{margin:0}
+.serif{font-family:QuestDeva,Georgia,serif}
+.initial-loading{min-height:100dvh;display:grid;align-content:center;justify-items:center;gap:14px;background:var(--forest);color:var(--cream)}
+.initial-mark{font-size:54px;color:var(--gold)}
+.quest-layout{display:grid;grid-template-columns:minmax(0,1fr);min-height:100dvh}
+.quest-header{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1200px;margin:auto;padding:19px 24px;color:var(--cream)}
+.quest-brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
+.quest-brand img{width:46px;height:46px;object-fit:cover;border:1px solid #d1b97966;border-radius:12px;flex:none}
+.quest-brand strong{display:block;font-size:17px;line-height:1.4;letter-spacing:-.4px}
+.quest-brand small{font-size:9px;letter-spacing:1.4px;color:#d3c9ad;font-weight:700}
+.header-actions{display:flex;align-items:center;gap:8px}
+.lang-select,.sound-btn{height:42px;border-radius:10px;border:1px solid #ffffff4d;background:#ffffff14;color:#fff7e9;padding:0 11px}
+.lang-select{min-width:99px;font-size:12px;font-weight:650}
+.lang-select option{color:#153329}
+.sound-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:650;white-space:nowrap}
+.top-shell{background:var(--forest)}
+.quest-content{max-width:1180px;margin:auto;padding:27px 26px 88px}
+.hero{
+  position:relative;isolation:isolate;border-radius:22px;overflow:hidden;
+  min-height:370px;background:#173b2f;color:#fff7e8;box-shadow:var(--shadow);
+  display:grid;align-items:center
+}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,#112e27fb 0%,#112e27ed 38%,#112e27a6 63%,#112e2750 100%),url('art/chariot.webp') right 51%/cover no-repeat}
+.hero-copy{padding:36px clamp(24px,4vw,56px);max-width:630px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#cda96e;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.hero h1{font-family:QuestDeva,Georgia,serif;line-height:1.45;font-size:clamp(33px,4.7vw,59px);font-weight:650;letter-spacing:-.7px;margin:15px 0 12px}
+.hero p{color:#e2d9c5;line-height:1.8;font-size:15px;max-width:460px}
+.hero-footer{margin-top:26px;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.big-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:13px 20px;background:#d9bb83;color:#1c382e;border-radius:11px;font-weight:800;font-size:14px}
+.big-action:hover{background:#efd4a0}
+.hero-counter{font-size:12px;color:#e5d2ae;font-weight:700}
+.info-strip{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:19px 0 23px;color:var(--muted);font-size:12px}
+.info-pill{background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:8px 12px}
+.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:31px 0 15px}
+.section-title h2{font-family:QuestDeva,Georgia,serif;font-size:26px;font-weight:650;line-height:1.5}
+.section-title p{color:var(--muted);font-size:12px;margin-top:5px}
+.world-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.world-card{position:relative;overflow:hidden;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:left;display:flex;flex-direction:column;gap:12px;min-height:248px}
+.world-card:hover{border-color:#ad9466;background:#fffdf4}
+.world-card:after{content:"";width:210px;height:210px;position:absolute;right:-105px;top:-115px;background:#deebda88;border-radius:50%;pointer-events:none}
+.world-card .world-symbol{width:58px;height:58px;border-radius:17px;background:#e3e9db;color:#285443;display:grid;place-items:center;font-size:30px;position:relative;z-index:1}
+.world-card:nth-child(2) .world-symbol{background:#f1e4d3;color:#a06b3b}
+.world-card:nth-child(3) .world-symbol{background:#ede3e6;color:#82495c}
+.world-title{font-family:QuestDeva,Georgia,serif;font-size:22px;font-weight:650;line-height:1.6}
+.world-description{font-size:12px;color:var(--muted);line-height:1.7}
+.world-progress{margin-top:auto;display:flex;align-items:center;gap:9px;font-size:11px;color:#40594b;font-weight:700}
+.progress-track{height:6px;background:#e5e4dc;border-radius:10px;overflow:hidden;flex:1}
+.progress-fill{height:100%;background:#4b7861;border-radius:10px;transition:width .25s}
+.level-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:23px 0 15px}
+.level-heading strong{font-size:18px}
+.level-heading span{font-size:11px;color:var(--muted)}
+.lesson-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+.lesson-pill{display:flex;align-items:center;gap:11px;min-width:0;text-align:left;border:1px solid var(--line);background:var(--surface);padding:13px 12px;border-radius:12px}
+.lesson-pill[aria-current="true"]{outline:2px solid #cca86a}
+.lesson-pill .lesson-number{flex:none;display:grid;place-items:center;width:33px;height:33px;border-radius:10px;background:#ebf0e9;color:#335845;font-size:12px;font-weight:800}
+.lesson-pill.done .lesson-number{background:#225541;color:white}
+.lesson-pill span:last-child{font-size:11px;line-height:1.5;color:var(--ink);min-width:0;overflow-wrap:anywhere}
+.garden{background:#ecf0e5;border-radius:17px;border:1px solid #dae2d3;padding:21px;margin:28px 0 5px;display:flex;align-items:center;gap:20px}
+.garden-art{font-size:40px;flex:none;letter-spacing:4px}
+.garden h3{font-family:QuestDeva,Georgia,serif;font-size:20px;margin:0 0 7px}
+.garden p{font-size:12px;color:#53695c;line-height:1.7}
+.quest-foot{margin-top:42px;text-align:center;font-size:11px;line-height:1.9;color:#768076}
+.quest-foot a{color:#285d47;text-underline-offset:3px}
+.quest-play{max-width:1120px;margin:auto}
+.back-row{display:flex;align-items:center;justify-content:space-between;gap:13px;margin:0 0 18px}
+.back-btn,.mini-action{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:12px;font-weight:700}
+.back-row .index{font-size:12px;color:#586b5e;font-weight:750}
+.challenge-layout{display:grid;grid-template-columns:minmax(0,1.24fr) minmax(270px,.76fr);align-items:start;gap:24px}
+.challenge-card{overflow:hidden;border-radius:21px;background:var(--surface);border:1px solid var(--line);min-width:0;box-shadow:0 12px 35px #132c2110}
+.challenge-cover{position:relative;display:flex;flex-direction:column;gap:11px;justify-content:flex-end;padding:28px 28px 24px;min-height:188px;color:#fff8eb;background:#1d4436}
+.challenge-cover:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#102e28e8,#183c30b4),url('art/flute.webp') right 50%/cover no-repeat;opacity:.9}
+.challenge-cover>*{position:relative;z-index:1}
+.challenge-cover .eyebrow{color:#e2bc81}
+.challenge-cover h1{font-family:QuestDeva,Georgia,serif;font-size:33px;line-height:1.55}
+.challenge-cover p{font-size:12px;color:#efdfc9;line-height:1.7}
+.challenge-body{padding:26px 28px 30px}
+.chapter-reference{display:inline-flex;align-items:center;gap:9px;border:1px solid #d4ddce;background:#edf0e8;color:#375e4b;font-size:11px;font-weight:750;padding:7px 11px;border-radius:99px}
+.story-quote{margin:19px 0 22px;font-family:QuestDeva,Georgia,serif;font-size:clamp(19px,2vw,25px);line-height:1.92;font-weight:550}
+.challenge-instruction{font-size:12px;font-weight:800;color:#7d653d;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.answers{display:grid;gap:10px}
+.answer{display:flex;align-items:center;gap:12px;min-height:60px;padding:14px 17px;text-align:left;border-radius:12px;background:#f7f8f2;border:1px solid #d9ddcf;color:var(--ink);font-family:QuestDeva,Georgia,serif;font-size:15px;line-height:1.65}
+.answer:hover{background:#edf2e8;border-color:#9fbaa4}
+.answer.selected{background:#e2eddf;border-color:#497b5f}
+.answer.correct{border-color:#46825b;background:#e3f0df}
+.answer-letter{flex:none;display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:#e7ebe1;font:700 12px QuestSans,sans-serif}
+.answer.selected .answer-letter{background:#2d6247;color:white}
+.feedback{padding:18px 20px;margin-top:18px;border:1px solid #d8d0bd;border-radius:13px;background:#faf5e8;line-height:1.8}
+.feedback.success{border-color:#b7d2b5;background:#edf6e8}
+.feedback strong{display:block;font-family:QuestDeva,Georgia,serif;font-size:19px;margin-bottom:5px}
+.feedback p{font-size:13px;color:#47574a}
+.feedback button{margin-top:14px}
+.arrange-options{display:flex;flex-wrap:wrap;gap:10px;min-height:64px}
+.arrange-chip{border:1px solid #b5c8b6;border-radius:11px;background:#f1f6ed;padding:12px 15px;min-height:46px;font-family:QuestDeva,Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5}
+.arrange-chip:disabled{opacity:.4}
+.arrange-selection{border:1px dashed #bcbdac;min-height:78px;margin-bottom:18px;background:#faf9f2;border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:12px}
+.arrange-selection .empty-hint{font-size:12px;color:var(--muted)}
+.arrange-selection button{background:#264f3d;color:white;border-radius:8px;padding:9px 12px;font-family:QuestDeva,Georgia,serif;font-size:14px}
+.arrange-actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.aside-card{background:#e7eddf;border:1px solid #d1dfcd;padding:25px;border-radius:17px;min-width:0}
+.aside-mark{display:grid;place-items:center;width:64px;height:64px;background:#d0dccb;border-radius:16px;font-size:34px}
+.aside-card .eyebrow{margin:17px 0 10px;color:#55745e;font-size:10px}
+.aside-card h2{font-family:QuestDeva,Georgia,serif;font-weight:650;font-size:24px;line-height:1.65}
+.aside-card p{font-size:13px;color:#55705d;line-height:1.85;margin-top:10px}
+.aside-card .progress-track{margin-top:19px;height:8px}
+.aside-card .count{font-size:12px;font-weight:800;color:#375d48;margin-top:10px}
+.scripture{margin-top:18px;background:#fffefa;border-radius:14px;border:1px solid var(--line);padding:19px}
+.scripture h3{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#947440;margin-bottom:10px}
+.scripture .verse{white-space:pre-line;font:500 16px/2 QuestDeva,Georgia,serif}
+.scripture .translation{white-space:pre-line;font:400 13px/1.85 QuestDeva,Georgia,serif;color:#4b574c;margin-top:11px}
+.scripture p.note{font-size:11px;color:#6b7869;margin-top:14px}
+.screen-reader-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(min-width:1360px){
+  .quest-layout{grid-template-columns:240px minmax(0,1fr)}
+  .top-shell{position:sticky;top:0;height:100dvh;align-self:start;z-index:3;border-right:1px solid #d5c29935}
+  .quest-header{height:100%;padding:28px 18px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:25px}
+  .quest-brand{align-items:flex-start}
+  .quest-brand img{width:48px;height:48px}
+  .quest-brand strong{font-size:18px}
+  .header-actions{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .lang-select,.sound-btn{width:100%}
+  .quest-content{max-width:none;padding:clamp(30px,3vw,64px);min-height:100dvh}
+  .hero{min-height:390px}
+}
+@media(max-width:1020px){
+  .world-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .world-card:last-child{grid-column:1/-1;min-height:195px}
+  .lesson-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .challenge-layout{grid-template-columns:minmax(0,1fr)}
+  .aside-card{display:grid;grid-template-columns:84px minmax(0,1fr);column-gap:15px}
+  .aside-card .aside-mark{grid-row:1/5}
+  .aside-card .eyebrow{margin:2px 0 5px}
+  .aside-card .progress-track{grid-column:2;margin-top:12px}
+  .aside-card .count{grid-column:2}
+}
+@media(max-width:600px){
+  .quest-header{padding:13px 14px}
+  .quest-brand{gap:9px;min-width:0}
+  .quest-brand img{width:38px;height:38px;border-radius:10px}
+  .quest-brand strong{font-size:14px}
+  .quest-brand small{font-size:8px;letter-spacing:.8px}
+  .header-actions{gap:6px}
+  .lang-select{min-width:70px;max-width:91px;font-size:11px;padding:0 5px}
+  .sound-btn{font-size:16px;width:39px;padding:0}
+  .sound-label{display:none}
+  .quest-content{padding:17px 15px 70px}
+  .hero{min-height:330px;border-radius:17px}
+  .hero:before{background:linear-gradient(180deg,#112e27f5 0%,#112e27de 45%,#112e2768 100%),url('art/chariot.webp') center 65%/cover no-repeat}
+  .hero-copy{padding:25px 22px}
+  .hero h1{font-size:clamp(29px,8vw,39px);max-width:100%;line-height:1.5;margin:12px 0}
+  .hero p{font-size:12px;line-height:1.7}
+  .hero-footer{margin-top:22px}
+  .big-action{min-height:47px;padding:12px 15px;font-size:12px}
+  .info-strip{margin:15px 0 20px;gap:7px;font-size:10px}
+  .info-pill{padding:7px 9px}
+  .section-title{margin:27px 0 12px}
+  .section-title h2{font-size:22px}
+  .world-grid{grid-template-columns:minmax(0,1fr);gap:11px}
+  .world-card{min-height:170px;padding:17px;gap:8px}
+  .world-card:last-child{grid-column:auto;min-height:170px}
+  .world-card .world-symbol{width:47px;height:47px;font-size:25px}
+  .world-title{font-size:19px}
+  .world-description{font-size:11px}
+  .lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .lesson-pill{padding:10px 9px;gap:7px}
+  .lesson-pill .lesson-number{width:29px;height:29px;border-radius:8px}
+  .lesson-pill span:last-child{font-size:10px}
+  .garden{gap:12px;padding:16px}
+  .garden-art{font-size:29px;letter-spacing:1px}
+  .garden h3{font-size:17px}
+  .back-row{margin-bottom:13px}
+  .challenge-cover{padding:21px 18px;min-height:165px}
+  .challenge-cover h1{font-size:27px}
+  .challenge-body{padding:21px 17px 23px}
+  .story-quote{font-size:19px;margin:15px 0 20px}
+  .answer{min-height:56px;padding:11px 12px;font-size:14px;gap:9px}
+  .aside-card{display:block;padding:20px}
+  .aside-card .aside-mark{width:52px;height:52px}
+  .aside-card .progress-track{margin-top:15px}
+  .feedback{padding:15px}
+  .scripture{padding:17px}
+}
+@media(max-width:350px){
+  .quest-header{padding:12px 9px}
+  .quest-brand img{width:34px;height:34px}
+  .quest-brand strong{font-size:12px}
+  .quest-brand small{font-size:7px}
+  .quest-content{padding:12px 10px 65px}
+  .hero-copy{padding:20px 15px}
+  .hero h1{font-size:27px}
+  .hero{min-height:310px}
+  .section-title h2{font-size:19px}
+  .answer{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
